@@ -646,8 +646,8 @@ body::before {
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-actions">
-        <a href="#" class="btn btn-ghost">Login</a>
-        <a href="#" class="btn btn-outline">Sign Up</a>
+        <a href="#" class="btn btn-ghost" onclick="openAuth('login');return false;">Login</a>
+        <a href="#" class="btn btn-outline" onclick="openAuth('signup');return false;">Sign Up</a>
         <a href="#resources" class="btn btn-primary">Start Learning</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -665,7 +665,7 @@ body::before {
   <a href="#founder" class="mobile-link">About</a>
   <a href="#contact" class="mobile-link">Contact</a>
   <div class="mobile-menu-actions">
-    <a href="#" class="btn btn-outline">Login</a>
+    <a href="#" class="btn btn-outline" onclick="openAuth('login');return false;">Login</a>
     <a href="#resources" class="btn btn-primary">Start Learning Free</a>
   </div>
 </div>
@@ -1358,7 +1358,7 @@ body::before {
         </div>
         <div style="margin-top:32px;padding:24px;background:rgba(59,130,246,0.06);border:1px solid var(--border);border-radius:var(--radius);">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-            <img src="https://i.ibb.co/cSDLgfCN/Chat-GPT-Image-Jun-29-2026-10-41-08-PM.png" alt="Master Ji" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(245,158,11,0.4);">
+            <img src="https://i.ibb.co/v4Y0c8CN/Chat-GPT-Image-Jun-30-2026-06-32-18-PM.png" alt="Master Ji" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(245,158,11,0.4);">
             <div style="font-size:12px;color:var(--accent-gold);font-weight:700;text-transform:uppercase;letter-spacing:1px;">Master Ji Says</div>
           </div>
           <div style="font-size:14px;color:var(--text-secondary);font-style:italic;">"Beta, agar koi bhi sawal hai — poochho. Zyvora Nexus ki poori team tumhare saath hai. Safalta milegi!"</div>
@@ -1456,13 +1456,13 @@ body::before {
 <div class="masterji-float" id="masterjiFloat">
   <div class="masterji-float-bubble" id="masterjiFloatBubble">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <img src="https://i.ibb.co/cSDLgfCN/Chat-GPT-Image-Jun-29-2026-10-41-08-PM.png" alt="Master Ji" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(245,158,11,0.5);">
+      <img src="https://i.ibb.co/v4Y0c8CN/Chat-GPT-Image-Jun-30-2026-06-32-18-PM.png" alt="Master Ji" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(245,158,11,0.5);">
       <strong style="color:var(--accent-gold);font-size:11px;text-transform:uppercase;letter-spacing:1px;">Master Ji</strong>
     </div>
     "Agli galti nahi hogi! Start your session 🎯"
   </div>
   <button class="masterji-float-btn" id="masterjiFloatBtn" aria-label="Talk to Master Ji" title="Talk to Master Ji">
-    <img src="https://i.ibb.co/cSDLgfCN/Chat-GPT-Image-Jun-29-2026-10-41-08-PM.png" alt="Master Ji">
+    <img src="https://i.ibb.co/v4Y0c8CN/Chat-GPT-Image-Jun-30-2026-06-32-18-PM.png" alt="Master Ji">
   </button>
 </div>
 
@@ -1609,7 +1609,7 @@ let quoteIdx = 0;
 
 floatBtn.addEventListener('click', () => {
   const isVisible = floatBubble.classList.contains('show');
-  floatBubble.innerHTML = '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><img src="https://i.ibb.co/cSDLgfCN/Chat-GPT-Image-Jun-29-2026-10-41-08-PM.png" alt="Master Ji" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(245,158,11,0.5);"><strong style="color:var(--accent-gold);font-size:11px;text-transform:uppercase;letter-spacing:1px;">Master Ji</strong></div>' + quotes[quoteIdx % quotes.length];
+  floatBubble.innerHTML = '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><img src="https://i.ibb.co/v4Y0c8CN/Chat-GPT-Image-Jun-30-2026-06-32-18-PM.png" alt="Master Ji" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(245,158,11,0.5);"><strong style="color:var(--accent-gold);font-size:11px;text-transform:uppercase;letter-spacing:1px;">Master Ji</strong></div>' + quotes[quoteIdx % quotes.length];
   quoteIdx++;
   if (isVisible) {
     floatBubble.classList.remove('show');
@@ -1640,5 +1640,512 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 </script>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ── MODAL OVERLAY ── -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="modalOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:2000;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;" onclick="closeModal(event)">
+  <div id="modalBox" style="background:#111827;border:1px solid rgba(59,130,246,0.25);border-radius:20px;width:90%;max-width:560px;max-height:88vh;overflow-y:auto;position:relative;padding:36px 32px;" onclick="event.stopPropagation()">
+    <button onclick="closeAllModals()" style="position:absolute;top:16px;right:20px;background:none;border:none;color:#64748B;font-size:22px;cursor:pointer;line-height:1;">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- ── AUTH MODAL ── -->
+<div id="authModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:2000;backdrop-filter:blur(8px);align-items:center;justify-content:center;" onclick="closeModal(event)">
+  <div style="background:#111827;border:1px solid rgba(59,130,246,0.25);border-radius:20px;width:90%;max-width:440px;padding:40px 32px;position:relative;" onclick="event.stopPropagation()">
+    <button onclick="closeAllModals()" style="position:absolute;top:16px;right:20px;background:none;border:none;color:#64748B;font-size:22px;cursor:pointer;">&times;</button>
+    <div style="text-align:center;margin-bottom:28px;">
+      <img src="https://i.ibb.co/d4jVN81z/Screenshot-2026-06-17-150932.png" style="width:44px;height:44px;border-radius:10px;margin-bottom:12px;">
+      <h2 style="font-size:22px;font-weight:800;color:#F1F5F9;" id="authTitle">Welcome Back</h2>
+      <p style="font-size:13px;color:#64748B;" id="authSub">Sign in to your Zyvora Nexus account</p>
+    </div>
+    <!-- Google Button -->
+    <button onclick="googleAuth()" style="width:100%;padding:13px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#F1F5F9;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      Continue with Google
+    </button>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;"><div style="flex:1;height:1px;background:rgba(255,255,255,0.08);"></div><span style="font-size:12px;color:#64748B;">or</span><div style="flex:1;height:1px;background:rgba(255,255,255,0.08);"></div></div>
+    <div style="margin-bottom:14px;">
+      <label style="display:block;font-size:11px;font-weight:700;color:#94A3B8;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.7px;">Email</label>
+      <input id="authEmail" type="email" placeholder="you@email.com" autocomplete="email" style="width:100%;padding:12px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(59,130,246,0.18);border-radius:10px;color:#F1F5F9;font-size:14px;outline:none;font-family:inherit;" onfocus="this.style.borderColor='#3B82F6'" onblur="this.style.borderColor='rgba(59,130,246,0.18)'">
+    </div>
+    <div style="margin-bottom:20px;">
+      <label style="display:block;font-size:11px;font-weight:700;color:#94A3B8;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.7px;">Password</label>
+      <input id="authPassword" type="password" placeholder="••••••••" autocomplete="current-password" style="width:100%;padding:12px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(59,130,246,0.18);border-radius:10px;color:#F1F5F9;font-size:14px;outline:none;font-family:inherit;" onfocus="this.style.borderColor='#3B82F6'" onblur="this.style.borderColor='rgba(59,130,246,0.18)'" onkeydown="if(event.key==='Enter')submitAuth()">
+    </div>
+    <button onclick="submitAuth()" id="authSubmitBtn" style="width:100%;padding:13px;background:linear-gradient(135deg,#3B82F6,#7C3AED);border:none;border-radius:10px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;">Sign In →</button>
+    <p style="text-align:center;margin-top:16px;font-size:13px;color:#64748B;">
+      <span id="authToggleText">Don't have an account?</span>
+      <a href="#" onclick="toggleAuth();return false;" id="authToggleLink" style="color:#3B82F6;font-weight:600;margin-left:4px;">Sign Up</a>
+    </p>
+    <div id="authStatus" style="margin-top:12px;font-size:13px;text-align:center;min-height:18px;"></div>
+  </div>
+</div>
+
+<style>
+/* ── MODAL STYLES ── */
+.modal-title { font-size:20px;font-weight:800;color:#F1F5F9;margin-bottom:6px; }
+.modal-sub { font-size:13px;color:#64748B;margin-bottom:24px; }
+.modal-section { margin-bottom:18px; }
+.modal-label { display:block;font-size:11px;font-weight:700;color:#94A3B8;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.7px; }
+.modal-input { width:100%;padding:12px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(59,130,246,0.18);border-radius:10px;color:#F1F5F9;font-size:14px;outline:none;font-family:inherit;transition:border-color 0.2s; }
+.modal-input:focus { border-color:#3B82F6; }
+.modal-input::placeholder { color:#64748B; }
+.modal-textarea { min-height:100px;resize:vertical; }
+.modal-btn { width:100%;padding:13px;background:linear-gradient(135deg,#3B82F6,#7C3AED);border:none;border-radius:10px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:opacity 0.2s; }
+.modal-btn:hover { opacity:0.9; }
+.modal-btn:disabled { opacity:0.5;cursor:not-allowed; }
+.modal-btn-gold { background:linear-gradient(135deg,#F59E0B,#EF4444); }
+.ai-response-box { background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);border-radius:12px;padding:16px;margin-top:16px;font-size:14px;color:#CBD5E1;line-height:1.7;white-space:pre-wrap;display:none; }
+.ai-response-box.show { display:block; }
+.ai-typing { display:inline-block;animation:blink 1s infinite; }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
+.resource-lock { text-align:center;padding:24px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.2);border-radius:12px;margin-top:16px; }
+.chapter-badge { display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:16px; }
+.chapter-live { background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:#10B981; }
+.chapter-premium { background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:#F59E0B; }
+</style>
+
+<script>
+// ═══════════════════════════════
+// MODAL SYSTEM
+// ═══════════════════════════════
+function openModal(html) {
+  document.getElementById('modalContent').innerHTML = html;
+  const m = document.getElementById('modalOverlay');
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeAllModals() {
+  document.getElementById('modalOverlay').style.display = 'none';
+  document.getElementById('authModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay') || e.target === document.getElementById('authModal')) {
+    closeAllModals();
+  }
+}
+
+// ═══════════════════════════════
+// AUTH SYSTEM
+// ═══════════════════════════════
+let authMode = 'login'; // 'login' or 'signup'
+let currentUser = JSON.parse(localStorage.getItem('zn_user') || 'null');
+
+function openAuth(mode='login') {
+  authMode = mode;
+  document.getElementById('authModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  updateAuthUI();
+}
+function updateAuthUI() {
+  if (authMode === 'login') {
+    document.getElementById('authTitle').textContent = 'Welcome Back';
+    document.getElementById('authSub').textContent = 'Sign in to your Zyvora Nexus account';
+    document.getElementById('authSubmitBtn').textContent = 'Sign In →';
+    document.getElementById('authToggleText').textContent = "Don't have an account?";
+    document.getElementById('authToggleLink').textContent = 'Sign Up';
+  } else {
+    document.getElementById('authTitle').textContent = 'Join Zyvora Nexus';
+    document.getElementById('authSub').textContent = 'Create your free account';
+    document.getElementById('authSubmitBtn').textContent = 'Create Account →';
+    document.getElementById('authToggleText').textContent = 'Already have an account?';
+    document.getElementById('authToggleLink').textContent = 'Sign In';
+  }
+}
+function toggleAuth() {
+  authMode = authMode === 'login' ? 'signup' : 'login';
+  updateAuthUI();
+  document.getElementById('authStatus').textContent = '';
+}
+function googleAuth() {
+  showAuthStatus('Google login coming soon! Use email for now.', '#F59E0B');
+}
+function submitAuth() {
+  const email = document.getElementById('authEmail').value.trim();
+  const pass = document.getElementById('authPassword').value;
+  if (!email || !pass) { showAuthStatus('Please fill in all fields.', '#EF4444'); return; }
+  if (pass.length < 6) { showAuthStatus('Password must be at least 6 characters.', '#EF4444'); return; }
+  const btn = document.getElementById('authSubmitBtn');
+  btn.textContent = authMode === 'login' ? 'Signing in...' : 'Creating account...';
+  btn.disabled = true;
+  // Simulate auth (replace with Supabase later)
+  setTimeout(() => {
+    const user = { email, name: email.split('@')[0], plan: 'free', joined: new Date().toISOString() };
+    localStorage.setItem('zn_user', JSON.stringify(user));
+    currentUser = user;
+    closeAllModals();
+    updateNavForUser(user);
+    showToast('Welcome to Zyvora Nexus! 🎉');
+  }, 1200);
+}
+function showAuthStatus(msg, color='#EF4444') {
+  const el = document.getElementById('authStatus');
+  el.textContent = msg; el.style.color = color;
+}
+function logoutUser() {
+  localStorage.removeItem('zn_user');
+  currentUser = null;
+  updateNavForUser(null);
+  showToast('Logged out successfully.');
+}
+function updateNavForUser(user) {
+  const actions = document.querySelector('.nav-actions');
+  if (!actions) return;
+  if (user) {
+    actions.innerHTML = \`
+      <span style="font-size:13px;color:#CBD5E1;">Hi, <strong style="color:#F1F5F9;">\${user.name}</strong></span>
+      <a href="#" class="btn btn-outline" onclick="logoutUser();return false;">Logout</a>
+      <a href="#pricing" class="btn btn-primary">Upgrade →</a>
+    \`;
+  } else {
+    actions.innerHTML = \`
+      <a href="#" class="btn btn-ghost" onclick="openAuth('login');return false;">Login</a>
+      <a href="#" class="btn btn-outline" onclick="openAuth('signup');return false;">Sign Up</a>
+      <a href="#resources" class="btn btn-primary">Start Learning</a>
+    \`;
+  }
+}
+// Init auth state on load
+window.addEventListener('DOMContentLoaded', () => {
+  if (currentUser) updateNavForUser(currentUser);
+  // Wire login/signup buttons
+  document.querySelectorAll('.btn-ghost').forEach(b => { if (b.textContent.trim()==='Login') b.onclick=e=>{e.preventDefault();openAuth('login');}; });
+  document.querySelectorAll('.btn-outline').forEach(b => { if (b.textContent.trim()==='Sign Up') b.onclick=e=>{e.preventDefault();openAuth('signup');}; });
+});
+
+// ═══════════════════════════════
+// TOAST NOTIFICATION
+// ═══════════════════════════════
+function showToast(msg, type='success') {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = \`position:fixed;bottom:90px;right:28px;z-index:3000;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;color:#fff;background:\${type==='success'?'#10B981':'#EF4444'};box-shadow:0 8px 24px rgba(0,0,0,0.3);animation:slideUp 0.3s ease;\`;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 3500);
+}
+
+// ═══════════════════════════════
+// AI TOOLS
+// ═══════════════════════════════
+const AI_WEBHOOKS = {
+  doubt: 'https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-doubt-solver',
+  planner: 'https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-study-planner',
+  revision: 'https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-revision',
+  mistake: 'https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-mistake-tracker',
+};
+
+function openAITool(tool) {
+  const configs = {
+    doubt: {
+      title: '🤔 AI Doubt Solver',
+      sub: 'Ask any CBSE Class 10 Maths question. Master Ji explains step-by-step.',
+      inputs: [{ id:'q', label:'Your Question', placeholder:'e.g. How do I find roots using the quadratic formula?', type:'textarea' }],
+      btn: 'Solve My Doubt →',
+      endpoint: AI_WEBHOOKS.doubt,
+      buildPayload: () => ({ question: document.getElementById('ai-q').value.trim() }),
+      validate: () => document.getElementById('ai-q').value.trim() ? '' : 'Please enter your question.',
+    },
+    planner: {
+      title: '📅 AI Study Planner',
+      sub: 'Get a personalised day-by-day study schedule based on your goals.',
+      inputs: [
+        { id:'target', label:'Target Marks (out of 80)', placeholder:'e.g. 75', type:'input' },
+        { id:'days', label:'Days Until Exam', placeholder:'e.g. 45', type:'input' },
+        { id:'weak', label:'Your Weak Chapters', placeholder:'e.g. Trigonometry, Statistics', type:'input' },
+      ],
+      btn: 'Generate My Plan →',
+      endpoint: AI_WEBHOOKS.planner,
+      buildPayload: () => ({ target_marks: document.getElementById('ai-target').value, days_remaining: document.getElementById('ai-days').value, weak_chapters: document.getElementById('ai-weak').value }),
+      validate: () => (document.getElementById('ai-target').value && document.getElementById('ai-days').value) ? '' : 'Please fill target marks and days.',
+    },
+    revision: {
+      title: '⚡ AI Revision Generator',
+      sub: 'Get instant key concepts, formulas, and revision checklist for any chapter.',
+      inputs: [{ id:'ch', label:'Chapter Name', placeholder:'e.g. Quadratic Equations', type:'input' }],
+      btn: 'Generate Revision →',
+      endpoint: AI_WEBHOOKS.revision,
+      buildPayload: () => ({ chapter: document.getElementById('ai-ch').value.trim() }),
+      validate: () => document.getElementById('ai-ch').value.trim() ? '' : 'Please enter a chapter name.',
+    },
+  };
+  const cfg = configs[tool];
+  if (!cfg) return;
+  const inputsHTML = cfg.inputs.map(inp => \`
+    <div class="modal-section">
+      <label class="modal-label">\${inp.label}</label>
+      \${inp.type==='textarea'
+        ? \`<textarea class="modal-input modal-textarea" id="ai-\${inp.id}" placeholder="\${inp.placeholder}"></textarea>\`
+        : \`<input class="modal-input" type="text" id="ai-\${inp.id}" placeholder="\${inp.placeholder}">\`}
+    </div>
+  \`).join('');
+  openModal(\`
+    <div class="modal-title">\${cfg.title}</div>
+    <p class="modal-sub">\${cfg.sub}</p>
+    \${inputsHTML}
+    <button class="modal-btn" id="aiSubmitBtn" onclick="submitAITool('\${tool}')">\${cfg.btn}</button>
+    <div class="ai-response-box" id="aiResponse"></div>
+  \`);
+  // store config reference
+  window._currentAITool = tool;
+  window._aiConfigs = configs;
+}
+
+async function submitAITool(tool) {
+  const cfg = window._aiConfigs[tool];
+  const err = cfg.validate();
+  if (err) { showToast(err, 'error'); return; }
+  const btn = document.getElementById('aiSubmitBtn');
+  const resp = document.getElementById('aiResponse');
+  btn.textContent = 'Master Ji is thinking...';
+  btn.disabled = true;
+  resp.innerHTML = '<span class="ai-typing">●</span> Generating response...';
+  resp.classList.add('show');
+  try {
+    const res = await fetch(cfg.endpoint, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(cfg.buildPayload()),
+    });
+    const data = await res.json();
+    const answer = data.answer || data.plan || data.revision || data.response || data.output || JSON.stringify(data, null, 2);
+    resp.innerHTML = answer.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+  } catch(e) {
+    resp.innerHTML = '<span style="color:#EF4444;">⚠️ Could not reach Master Ji. Please check your connection or try again.</span>';
+  }
+  btn.textContent = cfg.btn;
+  btn.disabled = false;
+}
+
+// Wire AI launch buttons
+document.addEventListener('DOMContentLoaded', () => {
+  const toolMap = ['planner','doubt','revision','formula','practice','analyzer','strategy','motivation','mistake'];
+  document.querySelectorAll('.ai-launch').forEach((el, i) => {
+    const t = toolMap[i] || 'doubt';
+    el.onclick = () => {
+      if (['formula','practice','analyzer','strategy','motivation'].includes(t)) {
+        openModal(\`
+          <div class="modal-title">⭐ Premium Feature</div>
+          <p class="modal-sub">This AI tool is available on Starter or Pro plan.</p>
+          <div class="resource-lock">
+            <div style="font-size:40px;margin-bottom:12px;">🔒</div>
+            <div style="font-size:16px;font-weight:700;color:#F1F5F9;margin-bottom:8px;">Upgrade to Unlock</div>
+            <div style="font-size:13px;color:#94A3B8;margin-bottom:20px;">Get access to all AI tools with Starter or Pro plan.</div>
+            <a href="#pricing" onclick="closeAllModals()" class="btn btn-primary" style="display:inline-flex;">See Plans →</a>
+          </div>
+        \`);
+      } else if (t === 'mistake') {
+        openMistakeTracker();
+      } else {
+        openAITool(t);
+      }
+    };
+  });
+});
+
+// ═══════════════════════════════
+// MISTAKE TRACKER
+// ═══════════════════════════════
+function openMistakeTracker() {
+  openModal(\`
+    <div class="modal-title">🎯 Mistake Tracker</div>
+    <p class="modal-sub">Submit your wrong answers. Master Ji analyses patterns and generates your personalised Redemption Test.</p>
+    <div class="modal-section">
+      <label class="modal-label">Question You Got Wrong</label>
+      <textarea class="modal-input modal-textarea" id="mt-question" placeholder="e.g. Find the roots of 2x² + 5x + 3 = 0"></textarea>
+    </div>
+    <div class="modal-section">
+      <label class="modal-label">Your Wrong Answer</label>
+      <input class="modal-input" type="text" id="mt-wrong" placeholder="e.g. x = -1 only">
+    </div>
+    <div class="modal-section">
+      <label class="modal-label">Correct Answer</label>
+      <input class="modal-input" type="text" id="mt-correct" placeholder="e.g. x = -1 and x = -3/2">
+    </div>
+    <div class="modal-section">
+      <label class="modal-label">Chapter</label>
+      <input class="modal-input" type="text" id="mt-chapter" placeholder="e.g. Quadratic Equations">
+    </div>
+    <button class="modal-btn modal-btn-gold" id="mtSubmitBtn" onclick="submitMistake()">Analyse My Mistake →</button>
+    <div class="ai-response-box" id="mtResponse"></div>
+  \`);
+}
+
+async function submitMistake() {
+  const q = document.getElementById('mt-question').value.trim();
+  const w = document.getElementById('mt-wrong').value.trim();
+  const c = document.getElementById('mt-correct').value.trim();
+  const ch = document.getElementById('mt-chapter').value.trim();
+  if (!q || !w || !c) { showToast('Please fill in all fields.', 'error'); return; }
+  const btn = document.getElementById('mtSubmitBtn');
+  const resp = document.getElementById('mtResponse');
+  btn.textContent = 'Analysing your mistake...';
+  btn.disabled = true;
+  resp.innerHTML = '<span class="ai-typing">●</span> Master Ji is diagnosing your error pattern...';
+  resp.classList.add('show');
+  try {
+    const res = await fetch(AI_WEBHOOKS.mistake, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ question: q, student_answer: w, correct_answer: c, chapter: ch }),
+    });
+    const data = await res.json();
+    const answer = data.analysis || data.response || data.answer || data.output || JSON.stringify(data,null,2);
+    resp.innerHTML = answer.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+  } catch(e) {
+    resp.innerHTML = '<span style="color:#EF4444;">⚠️ Could not reach Master Ji. Please try again.</span>';
+  }
+  btn.textContent = 'Analyse My Mistake →';
+  btn.disabled = false;
+}
+
+// ═══════════════════════════════
+// RESOURCE BUTTONS
+// ═══════════════════════════════
+const CHAPTER_DATA = {
+  notes: { title:'📖 Chapter Notes', chapters:['Ch 1: Real Numbers','Ch 2: Polynomials','Ch 3: Linear Equations','Ch 4: Quadratic Equations'], free:[0,1], coming:[4,5,6,7,8,9,10,11,12,13] },
+  revision: { title:'⚡ Quick Revision Notes', chapters:['Ch 1: Real Numbers','Ch 2: Polynomials','Ch 3: Linear Equations','Ch 4: Quadratic Equations'], free:[0,1], coming:[4,5,6,7,8,9,10,11,12,13] },
+  formula: { title:'🔢 Formula Vault', premium:true },
+  pyq: { title:'📝 PYQ Hub', premium:true },
+  important: { title:'🎯 Important Questions', premium:true },
+  top100: { title:'🏆 Top 100 Questions', premium:true, pro:true },
+  flashcards: { title:'🃏 Flashcards', premium:true },
+  papers: { title:'📄 Sample Papers', premium:true },
+  revision_packs: { title:'🚀 Revision Packs', premium:true, pro:true },
+  videos: { title:'🎥 Premium Video Solutions', premium:true, pro:true },
+};
+
+function openResource(key) {
+  const r = CHAPTER_DATA[key];
+  if (!r) return;
+  if (r.pro) {
+    openModal(\`
+      <div class="modal-title">\${r.title}</div>
+      <p class="modal-sub">This resource is exclusive to Pro members.</p>
+      <div class="resource-lock">
+        <div style="font-size:40px;margin-bottom:12px;">⭐</div>
+        <div style="font-size:16px;font-weight:700;color:#F1F5F9;margin-bottom:8px;">Pro Exclusive</div>
+        <div style="font-size:13px;color:#94A3B8;margin-bottom:20px;">Upgrade to Pro for ₹499/month to access this and all premium content.</div>
+        <a href="#pricing" onclick="closeAllModals()" class="btn btn-primary" style="display:inline-flex;">Get Pro → ₹499/mo</a>
+      </div>
+    \`);
+    return;
+  }
+  if (r.premium) {
+    openModal(\`
+      <div class="modal-title">\${r.title}</div>
+      <p class="modal-sub">This resource is available on Starter and Pro plans.</p>
+      <div class="resource-lock">
+        <div style="font-size:40px;margin-bottom:12px;">🔒</div>
+        <div style="font-size:16px;font-weight:700;color:#F1F5F9;margin-bottom:8px;">Premium Resource</div>
+        <div style="font-size:13px;color:#94A3B8;margin-bottom:20px;">Get full access with Starter (₹199/mo) or Pro (₹499/mo).</div>
+        <a href="#pricing" onclick="closeAllModals()" class="btn btn-primary" style="display:inline-flex;">See Plans →</a>
+      </div>
+    \`);
+    return;
+  }
+  // Has chapter list
+  const chapHTML = r.chapters.map((ch, i) => {
+    const isFree = r.free && r.free.includes(i);
+    return \`
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(59,130,246,0.04);border:1px solid rgba(59,130,246,0.12);border-radius:10px;margin-bottom:8px;">
+        <span style="font-size:14px;font-weight:600;color:#F1F5F9;">\${ch}</span>
+        \${isFree
+          ? \`<span style="padding:4px 10px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);border-radius:20px;font-size:10px;font-weight:700;color:#10B981;">FREE</span>\`
+          : \`<span style="padding:4px 10px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:20px;font-size:10px;font-weight:700;color:#3B82F6;">LIVE</span>\`}
+      </div>
+    \`;
+  }).join('') + \`
+    <div style="padding:12px 16px;background:rgba(100,116,139,0.06);border:1px dashed rgba(100,116,139,0.2);border-radius:10px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:13px;color:#64748B;">Ch 5–14 (Coming Soon)</span>
+      <span style="padding:4px 10px;background:rgba(100,116,139,0.08);border:1px solid rgba(100,116,139,0.15);border-radius:20px;font-size:10px;font-weight:700;color:#64748B;">SOON</span>
+    </div>
+  \`;
+  openModal(\`
+    <div class="modal-title">\${r.title}</div>
+    <p class="modal-sub" style="margin-bottom:20px;">Select a chapter to access the content. Ch 1–2 are free. Ch 3–4 require Starter or Pro plan.</p>
+    \${chapHTML}
+    <div style="margin-top:16px;padding:14px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:10px;font-size:13px;color:#94A3B8;text-align:center;">
+      📁 Content files will be linked here once uploaded. Coming very soon!
+    </div>
+  \`);
+}
+
+// Wire resource buttons
+document.addEventListener('DOMContentLoaded', () => {
+  const resKeys = ['notes','revision','formula','pyq','important','top100','flashcards','papers','revision_packs','videos'];
+  document.querySelectorAll('.resource-btn').forEach((el, i) => {
+    const key = resKeys[i] || 'notes';
+    el.onclick = (e) => { e.preventDefault(); openResource(key); };
+  });
+});
+
+// ═══════════════════════════════
+// PHONEPAY PRICING BUTTONS
+// ═══════════════════════════════
+function openPayment(plan) {
+  const plans = {
+    starter: { name:'Starter Plan', price:'₹199', period:'month' },
+    pro: { name:'Pro Plan', price:'₹499', period:'month' },
+  };
+  const p = plans[plan];
+  openModal(\`
+    <div class="modal-title">💳 Subscribe to \${p.name}</div>
+    <p class="modal-sub">\${p.price}/\${p.period} · Cancel anytime</p>
+    <div style="background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:12px;padding:20px;margin-bottom:20px;">
+      <div style="font-size:13px;color:#94A3B8;margin-bottom:6px;">You are subscribing to:</div>
+      <div style="font-size:18px;font-weight:800;color:#F1F5F9;">\${p.name} — \${p.price}/mo</div>
+    </div>
+    <div class="modal-section">
+      <label class="modal-label">Your Name</label>
+      <input class="modal-input" type="text" id="pay-name" placeholder="Arjun Sharma" autocomplete="name">
+    </div>
+    <div class="modal-section">
+      <label class="modal-label">Email Address</label>
+      <input class="modal-input" type="email" id="pay-email" placeholder="you@email.com" autocomplete="email">
+    </div>
+    <div class="modal-section">
+      <label class="modal-label">Phone Number</label>
+      <input class="modal-input" type="tel" id="pay-phone" placeholder="+91 98765 43210" autocomplete="tel">
+    </div>
+    <button class="modal-btn" onclick="proceedToPhonePe('\${plan}')">Pay \${p.price} via PhonePe →</button>
+    <div style="margin-top:14px;text-align:center;font-size:12px;color:#64748B;">🔒 Secure payment · 100% safe · Cancel anytime</div>
+  \`);
+}
+
+function proceedToPhonePe(plan) {
+  const name = document.getElementById('pay-name').value.trim();
+  const email = document.getElementById('pay-email').value.trim();
+  const phone = document.getElementById('pay-phone').value.trim();
+  if (!name || !email || !phone) { showToast('Please fill in all fields.', 'error'); return; }
+  // Payment gateway integration point — replace with real PhonePe/Razorpay SDK
+  showToast('Redirecting to payment gateway...', 'success');
+  setTimeout(() => {
+    document.getElementById('modalContent').innerHTML = \`
+      <div style="text-align:center;padding:20px 0;">
+        <div style="font-size:48px;margin-bottom:16px;">🚧</div>
+        <div class="modal-title">Payment Gateway</div>
+        <p style="font-size:14px;color:#94A3B8;margin-bottom:24px;">PhonePe/Razorpay integration will be connected here. Your details have been saved.</p>
+        <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:16px;font-size:13px;color:#10B981;">
+          ✅ Name: \${name}<br>✅ Email: \${email}<br>✅ Phone: \${phone}<br>✅ Plan: \${plan.toUpperCase()}
+        </div>
+        <p style="font-size:12px;color:#64748B;margin-top:16px;">Contact support@zyvoranexus.com to complete payment manually until gateway is live.</p>
+      </div>
+    \`;
+  }, 1500);
+}
+
+// Wire pricing CTA buttons
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.pricing-cta').forEach(btn => {
+    const text = btn.textContent.trim();
+    if (text.includes('Starter')) btn.onclick = e => { e.preventDefault(); openPayment('starter'); };
+    if (text.includes('Pro')) btn.onclick = e => { e.preventDefault(); openPayment('pro'); };
+    if (text.includes('Free')) btn.onclick = e => { e.preventDefault(); openAuth('signup'); };
+  });
+});
+</script>
+
 </body>
 </html>
