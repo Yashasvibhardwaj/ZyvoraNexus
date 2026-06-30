@@ -1835,6 +1835,11 @@ const AI_WEBHOOKS = {
   planner: 'https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-study-planner',
   revision: 'https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-revision',
   mistake: 'https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-mistake-tracker',
+  formula: 'https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-formula-explainer',
+  practice: 'https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-practice-generator',
+  analyzer: 'https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-performance-analyzer',
+  strategy: 'https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-board-strategy',
+  motivation: 'https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-motivation',
 };
 
 function openAITool(tool) {
@@ -1869,6 +1874,67 @@ function openAITool(tool) {
       endpoint: AI_WEBHOOKS.revision,
       buildPayload: () => ({ chapter: document.getElementById('ai-ch').value.trim() }),
       validate: () => document.getElementById('ai-ch').value.trim() ? '' : 'Please enter a chapter name.',
+    },
+    formula: {
+      title: '🔢 AI Formula Explainer',
+      sub: 'Enter any formula or topic. Master Ji explains derivation, variables, usage and gives a solved example.',
+      inputs: [{ id:'formula', label:'Formula or Topic', placeholder:'e.g. Quadratic Formula, Pythagoras Theorem, sin²θ + cos²θ', type:'input' }],
+      btn: 'Explain This Formula →',
+      endpoint: AI_WEBHOOKS.formula,
+      buildPayload: () => ({ formula: document.getElementById('ai-formula').value.trim() }),
+      validate: () => document.getElementById('ai-formula').value.trim() ? '' : 'Please enter a formula or topic.',
+    },
+    practice: {
+      title: '✏️ AI Practice Generator',
+      sub: 'Generate 5 board-style practice questions with complete solutions for any chapter.',
+      inputs: [
+        { id:'pch', label:'Chapter Name', placeholder:'e.g. Arithmetic Progressions', type:'input' },
+        { id:'diff', label:'Difficulty', placeholder:'Easy / Medium / Hard / Mixed', type:'input' },
+        { id:'mtype', label:'Marks Type', placeholder:'1 mark / 3 mark / 5 mark / Mixed', type:'input' },
+      ],
+      btn: 'Generate Practice Set →',
+      endpoint: AI_WEBHOOKS.practice,
+      buildPayload: () => ({ chapter: document.getElementById('ai-pch').value.trim(), difficulty: document.getElementById('ai-diff').value.trim(), marks_type: document.getElementById('ai-mtype').value.trim() }),
+      validate: () => document.getElementById('ai-pch').value.trim() ? '' : 'Please enter a chapter name.',
+    },
+    analyzer: {
+      title: '📊 AI Performance Analyzer',
+      sub: 'Enter your study data. Master Ji analyses your performance and gives a personalised improvement plan.',
+      inputs: [
+        { id:'done', label:'Chapters Completed', placeholder:'e.g. Real Numbers, Polynomials, Triangles', type:'input' },
+        { id:'aweak', label:'Weak Chapters', placeholder:'e.g. Trigonometry, Statistics', type:'input' },
+        { id:'acc', label:'Accuracy % (in practice tests)', placeholder:'e.g. 65', type:'input' },
+        { id:'dleft', label:'Days Until Exam', placeholder:'e.g. 30', type:'input' },
+      ],
+      btn: 'Analyse My Performance →',
+      endpoint: AI_WEBHOOKS.analyzer,
+      buildPayload: () => ({ chapters_done: document.getElementById('ai-done').value.trim(), weak_chapters: document.getElementById('ai-aweak').value.trim(), accuracy: document.getElementById('ai-acc').value.trim(), days_left: document.getElementById('ai-dleft').value.trim() }),
+      validate: () => '' ,
+    },
+    strategy: {
+      title: '🗺️ AI Board Strategy',
+      sub: 'Get a complete board exam strategy — chapter priorities, daily targets, last-week plan, and exam day tips.',
+      inputs: [
+        { id:'sdleft', label:'Days Until Board Exam', placeholder:'e.g. 45', type:'input' },
+        { id:'sweak', label:'Weak Chapters', placeholder:'e.g. Trigonometry, Circles', type:'input' },
+        { id:'sstrong', label:'Strong Chapters', placeholder:'e.g. Real Numbers, Polynomials', type:'input' },
+      ],
+      btn: 'Build My Strategy →',
+      endpoint: AI_WEBHOOKS.strategy,
+      buildPayload: () => ({ days_left: document.getElementById('ai-sdleft').value.trim(), weak_chapters: document.getElementById('ai-sweak').value.trim(), strong_chapters: document.getElementById('ai-sstrong').value.trim() }),
+      validate: () => document.getElementById('ai-sdleft').value.trim() ? '' : 'Please enter days until exam.',
+    },
+    motivation: {
+      title: '💪 AI Motivation Coach',
+      sub: 'Tell Master Ji how you are feeling. Get a powerful personalised motivational message.',
+      inputs: [
+        { id:'msit', label:'How are you feeling? / Your situation', placeholder:'e.g. I am stressed, I have 20 days left and many chapters pending', type:'textarea' },
+        { id:'mdleft', label:'Days Until Exam', placeholder:'e.g. 20', type:'input' },
+      ],
+      btn: 'Motivate Me! →',
+      endpoint: AI_WEBHOOKS.motivation,
+      buildPayload: () => ({ situation: document.getElementById('ai-msit').value.trim(), days_left: document.getElementById('ai-mdleft').value.trim() }),
+      validate: () => '' ,
     },
   };
   const cfg = configs[tool];
@@ -1919,24 +1985,13 @@ async function submitAITool(tool) {
   btn.disabled = false;
 }
 
-// Wire AI launch buttons
+// Wire AI launch buttons — all tools open directly
 document.addEventListener('DOMContentLoaded', () => {
   const toolMap = ['planner','doubt','revision','formula','practice','analyzer','strategy','motivation','mistake'];
   document.querySelectorAll('.ai-launch').forEach((el, i) => {
     const t = toolMap[i] || 'doubt';
     el.onclick = () => {
-      if (['formula','practice','analyzer','strategy','motivation'].includes(t)) {
-        openModal(\`
-          <div class="modal-title">⭐ Premium Feature</div>
-          <p class="modal-sub">This AI tool is available on Starter or Pro plan.</p>
-          <div class="resource-lock">
-            <div style="font-size:40px;margin-bottom:12px;">🔒</div>
-            <div style="font-size:16px;font-weight:700;color:#F1F5F9;margin-bottom:8px;">Upgrade to Unlock</div>
-            <div style="font-size:13px;color:#94A3B8;margin-bottom:20px;">Get access to all AI tools with Starter or Pro plan.</div>
-            <a href="#pricing" onclick="closeAllModals()" class="btn btn-primary" style="display:inline-flex;">See Plans →</a>
-          </div>
-        \`);
-      } else if (t === 'mistake') {
+      if (t === 'mistake') {
         openMistakeTracker();
       } else {
         openAITool(t);
