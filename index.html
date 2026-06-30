@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Zyvora Nexus — The AI-Powered Board Exam Command Center for CBSE Class 10 Mathematics. Master Maths through structured notes, PYQs, flashcards, formula sheets, and AI study tools.">
+<meta name="keywords" content="CBSE Class 10 Maths, Board Exam Preparation, AI Study Planner, PYQs, Formula Sheet, Flashcards, Quadratic Equations">
+<meta property="og:title" content="Zyvora Nexus — AI-Powered Board Exam Command Center">
+<meta property="og:description" content="Everything You Need for CBSE Class 10 Maths. In One Place.">
+<meta property="og:image" content="https://i.ibb.co/d4jVN81z/Screenshot-2026-06-17-150932.png">
+<meta property="og:type" content="website">
+<title>Zyvora Nexus — The AI-Powered Board Exam Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #0B1120;
+  --bg-secondary: #111827;
+  --bg-card: rgba(17, 24, 39, 0.85);
+  --accent-blue: #3B82F6;
+  --accent-purple: #7C3AED;
+  --accent-cyan: #06B6D4;
+  --accent-gold: #F59E0B;
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-muted: #64748B;
+  --border: rgba(59, 130, 246, 0.18);
+  --border-purple: rgba(124, 58, 237, 0.22);
+  --gradient-blue: linear-gradient(135deg, #3B82F6, #7C3AED);
+  --gradient-cyan: linear-gradient(135deg, #06B6D4, #3B82F6);
+  --gradient-gold: linear-gradient(135deg, #F59E0B, #EF4444);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 24px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 3px; }
+
+/* ── SELECTION ── */
+::selection { background: rgba(59,130,246,0.3); color: #fff; }
+
+/* ── UTILITIES ── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.gradient-text { background: var(--gradient-blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.gradient-text-cyan { background: var(--gradient-cyan); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.glass { background: rgba(17,24,39,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--border); }
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+.badge-premium { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.35); color: var(--accent-gold); }
+.badge-free { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.25); color: #10B981; }
+.badge-new { background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.25); color: var(--accent-blue); }
+.section-label { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 12px; }
+.section-title { font-size: clamp(28px, 4vw, 48px); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+.section-sub { font-size: 17px; color: var(--text-secondary); max-width: 620px; line-height: 1.75; }
+
+/* ── NAVBAR ── */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  transition: all 0.3s ease; padding: 14px 0;
+}
+#navbar.scrolled {
+  background: rgba(11,17,32,0.97);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border); padding: 10px 0;
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-img {
+  width: 40px; height: 40px; border-radius: 10px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(59,130,246,0.5));
+}
+.logo-text-wrap { display: flex; flex-direction: column; }
+.logo-name { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: 1px; line-height: 1; }
+.logo-sub-text { font-size: 9px; color: var(--accent-blue); letter-spacing: 3px; text-transform: uppercase; font-weight: 600; }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text-primary); }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; border: none; }
+.btn-ghost { color: var(--text-secondary); background: transparent; }
+.btn-ghost:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+.btn-outline { color: var(--text-primary); background: transparent; border: 1px solid rgba(255,255,255,0.15); }
+.btn-outline:hover { border-color: var(--accent-blue); color: var(--accent-blue); background: rgba(59,130,246,0.05); }
+.btn-primary { background: var(--gradient-blue); color: #fff; box-shadow: 0 4px 20px rgba(59,130,246,0.35); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(59,130,246,0.45); }
+.btn-lg { padding: 14px 28px; font-size: 16px; border-radius: var(--radius); }
+.btn-xl { padding: 16px 36px; font-size: 17px; border-radius: var(--radius); }
+.btn-gold { background: var(--gradient-gold); color: #fff; box-shadow: 0 4px 20px rgba(245,158,11,0.3); }
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(245,158,11,0.45); }
+
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none; position: fixed; inset: 0; z-index: 999;
+  background: rgba(11,17,32,0.98); backdrop-filter: blur(24px);
+  flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+  padding: 80px 24px 40px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { color: var(--text-primary); text-decoration: none; font-size: 22px; font-weight: 700; transition: color 0.2s; }
+.mobile-menu a:hover { color: var(--accent-blue); }
+.mobile-menu-actions { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 300px; margin-top: 16px; }
+.mobile-menu-actions .btn { width: 100%; }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 120px 0 80px;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59,130,246,0.18), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124,58,237,0.12), transparent),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(6,182,212,0.08), transparent);
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  position: relative; z-index: 1;
+}
+.hero-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.hero-eyebrow-text { font-size: 13px; color: var(--accent-cyan); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.hero-dot { width: 6px; height: 6px; background: var(--accent-cyan); border-radius: 50%; animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(0.8); } }
+.hero-title { font-size: clamp(36px, 5vw, 62px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
+.hero-sub { font-size: 16px; color: var(--text-secondary); line-height: 1.85; margin-bottom: 36px; max-width: 520px; }
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+.hero-stats { display: flex; gap: 32px; }
+.hero-stat { display: flex; flex-direction: column; }
+.hero-stat-num { font-size: 22px; font-weight: 800; background: var(--gradient-blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+/* Hero visual — Master Ji */
+.hero-visual {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  min-height: 420px;
+}
+.masterji-hero-img {
+  width: 100%; max-width: 400px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 60px rgba(59,130,246,0.35)) drop-shadow(0 0 120px rgba(124,58,237,0.15));
+  animation: float 6s ease-in-out infinite;
+  border-radius: 20px;
+}
+@keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-14px); } }
+
+/* Master Ji speech bubble */
+.masterji-bubble {
+  position: absolute; bottom: 20px; right: -20px;
+  background: rgba(17,24,39,0.97);
+  border: 1px solid rgba(245,158,11,0.3);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-size: 13px; font-weight: 600; color: var(--text-primary);
+  max-width: 210px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(245,158,11,0.1);
+  animation: float 4s ease-in-out infinite reverse;
+}
+.masterji-bubble-label { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.masterji-bubble-label img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1.5px solid rgba(245,158,11,0.5); }
+.masterji-bubble-label span { font-size: 10px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
+.masterji-bubble-text { font-style: italic; color: var(--text-secondary); font-size: 12px; }
+
+/* ── COMING SOON BANNER ── */
+#coming-soon {
+  padding: 80px 0;
+  background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(124,58,237,0.06));
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+#coming-soon::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(59,130,246,0.06), transparent);
+  pointer-events: none;
+}
+.coming-soon-inner { text-align: center; position: relative; z-index: 1; }
+.coming-soon-inner .section-label { margin-bottom: 8px; }
+.coming-soon-inner h2 { font-size: clamp(28px,4vw,44px); font-weight: 900; margin-bottom: 16px; }
+.coming-soon-inner p { font-size: 16px; color: var(--text-secondary); margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; }
+.countdown-grid { display: flex; gap: 24px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+.countdown-item {
+  background: rgba(17,24,39,0.9);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 32px;
+  min-width: 110px; text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  transition: border-color 0.3s, transform 0.3s;
+}
+.countdown-item:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-4px); }
+.countdown-num { font-size: 44px; font-weight: 900; background: var(--gradient-blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+.countdown-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 6px; font-weight: 600; }
+.notify-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto; }
+.notify-input {
+  flex: 1; min-width: 220px; padding: 14px 18px;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--text-primary); font-family: inherit; font-size: 14px;
+  outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.notify-input:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(59,130,246,0.12); }
+.notify-input::placeholder { color: var(--text-muted); }
+
+/* ── TRUST STATS ── */
+#stats { padding: 70px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.stats-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
+.stat-card {
+  text-align: center; padding: 26px 16px;
+  background: rgba(59,130,246,0.04); border: 1px solid var(--border);
+  border-radius: var(--radius); transition: all 0.3s;
+}
+.stat-card:hover { border-color: rgba(59,130,246,0.35); background: rgba(59,130,246,0.09); transform: translateY(-5px); box-shadow: 0 12px 40px rgba(59,130,246,0.08); }
+.stat-icon { font-size: 28px; margin-bottom: 10px; }
+.stat-num { font-size: 30px; font-weight: 900; background: var(--gradient-blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 5px; font-weight: 500; }
+
+/* ── PROBLEM / SOLUTION ── */
+#problem { padding: 100px 0; }
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
+.problem-card { border-radius: var(--radius-lg); padding: 36px; transition: transform 0.3s; }
+.problem-card:hover { transform: translateY(-5px); }
+.problem-card.bad { background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.18); }
+.problem-card.good { background: rgba(16,185,129,0.04); border: 1px solid rgba(16,185,129,0.18); }
+.problem-card-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.problem-card.bad .problem-card-title { color: #EF4444; }
+.problem-card.good .problem-card-title { color: #10B981; }
+.problem-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; color: var(--text-secondary); }
+.problem-item:last-child { border-bottom: none; }
+.problem-arrow { text-align: center; font-size: 28px; margin-top: 20px; font-weight: 700; }
+.problem-arrow.bad { color: #EF4444; }
+.problem-arrow.good { color: #10B981; }
+.problem-result { text-align: center; padding: 12px; border-radius: var(--radius-sm); margin-top: 8px; font-weight: 700; font-size: 15px; }
+.problem-result.bad { background: rgba(239,68,68,0.12); color: #EF4444; }
+.problem-result.good { background: rgba(16,185,129,0.12); color: #10B981; }
+
+/* ── RESOURCES ── */
+#resources { padding: 100px 0; }
+.resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; margin-top: 60px; }
+.resource-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px; transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.resource-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--gradient-blue); opacity: 0; transition: opacity 0.3s;
+}
+.resource-card:hover { transform: translateY(-6px); border-color: rgba(59,130,246,0.4); box-shadow: 0 20px 60px rgba(59,130,246,0.1); }
+.resource-card:hover::after { opacity: 1; }
+.resource-card.premium-card { border-color: rgba(245,158,11,0.25); }
+.resource-card.premium-card::after { background: var(--gradient-gold); }
+.resource-card.premium-card:hover { border-color: rgba(245,158,11,0.5); box-shadow: 0 20px 60px rgba(245,158,11,0.1); }
+.resource-icon { font-size: 36px; margin-bottom: 16px; }
+.resource-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
+.resource-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 20px; }
+.resource-footer { display: flex; align-items: center; justify-content: space-between; }
+.resource-btn { font-size: 13px; font-weight: 600; color: var(--accent-blue); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: gap 0.2s; }
+.resource-btn:hover { gap: 8px; }
+
+/* ── HOW IT WORKS ── */
+#how { padding: 100px 0; background: linear-gradient(180deg, transparent, rgba(59,130,246,0.03), transparent); }
+.steps-wrapper { margin-top: 60px; }
+.steps-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  position: relative;
+}
+/* Connector line — only spans the top row of circles */
+.steps-connector {
+  position: absolute; top: 32px; left: calc(12.5% + 0px); right: calc(12.5% + 0px); height: 2px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-cyan));
+  z-index: 0; pointer-events: none;
+}
+.step-card { text-align: center; padding: 20px 16px; position: relative; z-index: 1; }
+.step-num {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--gradient-blue);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 900; color: #fff;
+  margin: 0 auto 16px;
+  box-shadow: 0 0 30px rgba(59,130,246,0.35);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative; z-index: 2;
+}
+.step-card:hover .step-num { transform: scale(1.12); box-shadow: 0 0 50px rgba(59,130,246,0.5); }
+.step-icon { font-size: 22px; margin-bottom: 8px; }
+.step-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--text-primary); }
+.step-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+/* Second row steps — no connector, offset visually */
+.steps-row2 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 0; }
+
+/* ── AI TOOLS ── */
+#ai { padding: 100px 0; }
+.ai-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(265px, 1fr)); gap: 22px; margin-top: 60px; }
+.ai-card {
+  background: var(--bg-card); border: 1px solid var(--border-purple);
+  border-radius: var(--radius); padding: 28px; transition: all 0.3s; position: relative;
+}
+.ai-card:hover { transform: translateY(-6px); border-color: rgba(124,58,237,0.5); box-shadow: 0 20px 60px rgba(124,58,237,0.1); }
+.ai-card.highlight-card {
+  border-color: rgba(245,158,11,0.4);
+  background: linear-gradient(135deg, rgba(245,158,11,0.04), rgba(124,58,237,0.04));
+  box-shadow: 0 0 40px rgba(245,158,11,0.08);
+}
+.ai-card.highlight-card:hover { box-shadow: 0 20px 60px rgba(245,158,11,0.15); }
+.ai-card-icon { font-size: 32px; margin-bottom: 14px; }
+.ai-card-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
+.ai-card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 16px; }
+.ai-card-footer { display: flex; align-items: center; justify-content: space-between; }
+.ai-launch { font-size: 12px; font-weight: 600; color: var(--accent-purple); cursor: pointer; transition: color 0.2s; }
+.ai-launch:hover { color: var(--accent-blue); }
+
+/* ── MISTAKE TRACKER ── */
+#mistake-tracker { padding: 100px 0; }
+.tracker-inner {
+  background: linear-gradient(135deg, rgba(245,158,11,0.05), rgba(124,58,237,0.05));
+  border: 1px solid rgba(245,158,11,0.2);
+  border-radius: var(--radius-lg); padding: 60px;
+  position: relative; overflow: hidden;
+}
+.tracker-inner::before {
+  content: ''; position: absolute; top: -50%; right: -10%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(245,158,11,0.08), transparent 70%);
+  pointer-events: none;
+}
+.tracker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.tracker-steps { display: flex; flex-direction: column; gap: 24px; margin-top: 32px; }
+.tracker-step { display: flex; align-items: flex-start; gap: 16px; }
+.tracker-step-num {
+  width: 40px; height: 40px; min-width: 40px; border-radius: 50%;
+  background: var(--gradient-gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800; color: #fff;
+}
+.tracker-step-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.tracker-step-desc { font-size: 13px; color: var(--text-secondary); }
+.tracker-visual {
+  background: rgba(17,24,39,0.85); border: 1px solid rgba(245,158,11,0.2);
+  border-radius: var(--radius); padding: 28px;
+}
+.tracker-visual-title { font-size: 14px; font-weight: 700; color: var(--accent-gold); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+.mistake-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15); border-radius: var(--radius-sm); margin-bottom: 8px; }
+.mistake-icon { font-size: 16px; padding-top: 2px; }
+.mistake-text { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+.mistake-chapter { font-size: 10px; color: #EF4444; font-weight: 600; margin-top: 3px; }
+.redemption-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(16,185,129,0.1));
+  border: 1px solid rgba(245,158,11,0.25);
+  border-radius: var(--radius-sm); padding: 12px 16px; margin-top: 16px;
+  font-size: 13px; font-weight: 600; color: var(--accent-gold);
+}
+
+/* ── PRICING ── */
+#pricing { padding: 100px 0; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
+.pricing-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 36px; transition: all 0.3s; position: relative;
+}
+.pricing-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+.pricing-card.popular {
+  border-color: rgba(245,158,11,0.45);
+  background: linear-gradient(135deg, rgba(245,158,11,0.05), rgba(124,58,237,0.04));
+  box-shadow: 0 0 60px rgba(245,158,11,0.1);
+}
+.pricing-card.popular:hover { box-shadow: 0 20px 80px rgba(245,158,11,0.18); }
+.popular-badge {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--gradient-gold);
+  color: #fff; font-size: 11px; font-weight: 800;
+  padding: 6px 18px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase;
+  white-space: nowrap; box-shadow: 0 4px 16px rgba(245,158,11,0.4);
+}
+.pricing-plan { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+.pricing-price { font-size: 48px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+.pricing-price span { font-size: 20px; font-weight: 500; color: var(--text-muted); }
+.pricing-desc { font-size: 13px; color: var(--text-secondary); margin: 12px 0 28px; line-height: 1.6; }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+.pricing-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-secondary); }
+.pricing-features li .check { color: #10B981; font-size: 16px; font-weight: 700; }
+.pricing-features li .cross { color: var(--text-muted); font-size: 16px; }
+.pricing-cta { width: 100%; }
+.btn-secondary { background: rgba(255,255,255,0.05); color: var(--text-primary); border: 1px solid var(--border); }
+.btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); }
+
+/* ── FOUNDER ── */
+#founder { padding: 100px 0; }
+.founder-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  background: rgba(17,24,39,0.5); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 60px;
+}
+.founder-quote { font-size: 22px; font-weight: 700; line-height: 1.5; color: var(--text-primary); margin-bottom: 24px; }
+.founder-story { font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 20px; }
+.founder-name { font-size: 18px; font-weight: 700; color: var(--text-primary); }
+.founder-title { font-size: 13px; color: var(--accent-blue); font-weight: 600; }
+.founder-visual {
+  background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(124,58,237,0.06));
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: var(--radius); padding: 40px; text-align: center;
+}
+.founder-mascot-img {
+  width: 130px; height: 130px; border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 16px; display: block;
+  border: 3px solid rgba(59,130,246,0.4);
+  box-shadow: 0 0 40px rgba(59,130,246,0.3), 0 0 0 6px rgba(59,130,246,0.06);
+}
+.founder-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+.founder-stat-item { background: rgba(59,130,246,0.06); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; text-align: center; transition: transform 0.2s; }
+.founder-stat-item:hover { transform: scale(1.03); }
+.founder-stat-val { font-size: 22px; font-weight: 900; background: var(--gradient-blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.founder-stat-lbl { font-size: 11px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+
+/* ── TESTIMONIALS ── */
+#testimonials { padding: 100px 0; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; margin-top: 60px; }
+.testimonial-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 28px; transition: all 0.3s;
+}
+.testimonial-card:hover { transform: translateY(-5px); border-color: rgba(59,130,246,0.35); box-shadow: 0 16px 50px rgba(59,130,246,0.08); }
+.testimonial-stars { color: var(--accent-gold); font-size: 16px; margin-bottom: 16px; letter-spacing: 2px; }
+.testimonial-text { font-size: 14px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.testimonial-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--gradient-blue); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: #fff; }
+.testimonial-name { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+.testimonial-meta { font-size: 12px; color: var(--text-muted); }
+
+/* ── FAQ ── */
+#faq { padding: 100px 0; }
+.faq-list { margin-top: 60px; max-width: 760px; margin-left: auto; margin-right: auto; display: flex; flex-direction: column; gap: 12px; }
+.faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.3s; }
+.faq-item.open { border-color: rgba(59,130,246,0.35); }
+.faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; cursor: pointer; font-size: 15px; font-weight: 600; color: var(--text-primary); background: transparent; border: none; text-align: left; gap: 16px; transition: color 0.2s; }
+.faq-question:hover { color: var(--accent-blue); }
+.faq-icon { font-size: 18px; color: var(--accent-blue); transition: transform 0.3s; min-width: 20px; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-answer { font-size: 14px; color: var(--text-secondary); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; padding: 0 24px; }
+.faq-item.open .faq-answer { max-height: 220px; padding: 0 24px 20px; }
+
+/* ── CONTACT ── */
+#contact { padding: 100px 0; }
+.contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.contact-info h3 { font-size: 24px; font-weight: 700; margin-bottom: 16px; }
+.contact-info p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 32px; }
+.contact-detail { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 14px; color: var(--text-secondary); }
+.contact-detail-icon { font-size: 18px; }
+.contact-form { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px; }
+.form-group { margin-bottom: 20px; }
+.form-label { display: block; font-size: 12px; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.7px; }
+.form-input, .form-textarea {
+  width: 100%; padding: 14px 16px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--text-primary); font-family: inherit; font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+}
+.form-input:focus, .form-textarea:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(59,130,246,0.12); }
+.form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+.form-textarea { min-height: 120px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-submit { width: 100%; }
+#form-status { margin-top: 12px; font-size: 13px; text-align: center; min-height: 20px; }
+#form-status.success { color: #10B981; }
+#form-status.error { color: #EF4444; }
+
+/* ── FOOTER ── */
+footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 60px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 16px; }
+.footer-logo-img { width: 36px; height: 36px; border-radius: 8px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(59,130,246,0.4)); }
+.footer-brand-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; max-width: 280px; }
+.footer-col-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-primary); margin-bottom: 16px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--accent-blue); }
+.social-links { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+.social-link {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); text-decoration: none; font-size: 16px;
+  transition: all 0.2s;
+}
+.social-link:hover { background: rgba(59,130,246,0.15); border-color: var(--accent-blue); color: var(--accent-blue); transform: translateY(-2px); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 24px; border-top: 1px solid var(--border); }
+.footer-copy { font-size: 13px; color: var(--text-muted); }
+.footer-tagline { font-size: 13px; color: var(--text-muted); font-style: italic; }
+
+/* ── MASTER JI FLOATING WIDGET ── */
+.masterji-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 900;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+}
+.masterji-float-bubble {
+  background: rgba(11,17,32,0.97);
+  border: 1px solid rgba(245,158,11,0.4);
+  border-radius: var(--radius); padding: 12px 16px;
+  font-size: 13px; color: var(--text-secondary);
+  max-width: 200px; text-align: right;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 20px rgba(245,158,11,0.08);
+  display: none;
+  animation: slideUp 0.3s ease;
+}
+@keyframes slideUp { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
+.masterji-float-bubble.show { display: block; }
+.masterji-float-btn {
+  width: 62px; height: 62px;
+  border-radius: 50%; overflow: hidden;
+  border: 2px solid rgba(245,158,11,0.5);
+  box-shadow: 0 4px 24px rgba(245,158,11,0.3), 0 0 0 4px rgba(245,158,11,0.08);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: var(--bg-secondary);
+}
+.masterji-float-btn:hover { transform: scale(1.08); box-shadow: 0 8px 32px rgba(245,158,11,0.4), 0 0 0 6px rgba(245,158,11,0.12); }
+.masterji-float-btn img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .stats-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-connector { display: none; }
+  .steps-row2 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-actions { display: none; }
+  .hamburger { display: flex; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-visual { min-height: 320px; margin-top: 20px; }
+  .hud-container { width: 280px; height: 280px; }
+  .hud-center { width: 140px; height: 140px; }
+  .hud-ring-1 { width: 140px; height: 140px; }
+  .hud-ring-2 { width: 110px; height: 110px; top: 15px; left: 15px; }
+  .hud-ring-3 { width: 160px; height: 160px; top: -10px; left: -10px; }
+  .hud-core { width: 95px; height: 95px; }
+  .hud-masterji-img { width: 55px; height: 55px; }
+  .masterji-bubble { right: 0; bottom: -10px; max-width: 180px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .problem-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card.popular { order: -1; }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-connector { display: none; }
+  .founder-inner { grid-template-columns: 1fr; gap: 40px; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .tracker-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .form-row { grid-template-columns: 1fr; }
+  .tracker-inner { padding: 32px 24px; }
+  .hero-stats { gap: 20px; }
+  .countdown-grid { gap: 12px; }
+  .countdown-item { padding: 18px 20px; min-width: 80px; }
+  .countdown-num { font-size: 32px; }
+  .masterji-float { bottom: 16px; right: 16px; }
+  .masterji-float-btn { width: 52px; height: 52px; }
+}
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .notify-form { flex-direction: column; }
+  .notify-input { min-width: unset; }
+}
+
+/* ── GLOW EFFECTS ── */
+.glow-blue { box-shadow: 0 0 40px rgba(59,130,246,0.25); }
+.glow-gold { box-shadow: 0 0 40px rgba(245,158,11,0.25); }
+
+/* ── AI COMMAND CENTER GLOBAL HUD ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image: linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.section-label { font-family: 'Courier New', monospace; }
+.logo-sub-text { font-family: 'Courier New', monospace; }
+
+/* Counter animation */
+.count-num { display: inline-block; }
+
+/* ── FOUNDER PHOTO PLACEHOLDER ── */
+.founder-photo-placeholder {
+  width: 140px; height: 140px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(124,58,237,0.1));
+  border: 3px solid rgba(59,130,246,0.4);
+  box-shadow: 0 0 40px rgba(59,130,246,0.3), 0 0 0 6px rgba(59,130,246,0.06);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  margin: 0 auto 8px;
+  position: relative;
+}
+.founder-photo-icon { font-size: 52px; line-height: 1; }
+.founder-photo-label { font-size: 13px; font-weight: 700; color: var(--text-primary); margin-top: 4px; }
+.founder-photo-sub { font-size: 10px; color: var(--accent-blue); font-weight: 600; letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Zyvora Nexus home">
+        <img src="https://i.ibb.co/d4jVN81z/Screenshot-2026-06-17-150932.png" alt="Zyvora Nexus Logo" class="logo-img">
+        <div class="logo-text-wrap">
+          <span class="logo-name">ZYVORA NEXUS</span>
+          <span class="logo-sub-text">From Confusion to Confidence</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Site links">
+        <a href="#resources">Resources</a>
+        <a href="#ai">AI Tools</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#founder">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#" class="btn btn-ghost">Login</a>
+        <a href="#" class="btn btn-outline">Sign Up</a>
+        <a href="#resources" class="btn btn-primary">Start Learning</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <a href="#resources" class="mobile-link">Resources</a>
+  <a href="#ai" class="mobile-link">AI Tools</a>
+  <a href="#pricing" class="mobile-link">Pricing</a>
+  <a href="#founder" class="mobile-link">About</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+  <div class="mobile-menu-actions">
+    <a href="#" class="btn btn-outline">Login</a>
+    <a href="#resources" class="btn btn-primary">Start Learning Free</a>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div style="text-align:center;position:relative;z-index:1;max-width:860px;margin:0 auto;" class="fade-up">
+      <div class="hero-eyebrow" style="justify-content:center;">
+        <div class="hero-dot"></div>
+        <span class="hero-eyebrow-text">🟢 Now Live · Chapters 1–4 Available · CBSE Class 10 Maths</span>
+      </div>
+      <h1 class="hero-title">The AI-Powered Board Exam<br><span class="gradient-text">Command Center</span><br>for CBSE Class 10 Maths.</h1>
+      <p class="hero-sub" style="max-width:660px;margin:0 auto 36px;">Notes, PYQs, Formula Vault, Flashcards, Sample Papers — all in one place. Powered by Master Ji AI. Built for students who are serious about scoring top.</p>
+      <div class="hero-ctas" style="justify-content:center;">
+        <a href="#resources" class="btn btn-primary btn-xl">Start Learning Free →</a>
+        <a href="#pricing" class="btn btn-gold btn-xl">Get Pro — ₹499/mo</a>
+        <a href="#ai" class="btn btn-outline btn-xl">Explore AI Tools</a>
+      </div>
+      <div class="hero-stats" role="list" style="justify-content:center;margin-top:48px;">
+        <div class="hero-stat"><span class="hero-stat-num">4</span><span class="hero-stat-label">Chapters Live</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">14</span><span class="hero-stat-label">Total Chapters</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">9</span><span class="hero-stat-label">AI Study Tools</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">100+</span><span class="hero-stat-label">Important Questions</span></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:32px;">
+        <span style="padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:#10B981;">✅ Ch 1: Real Numbers</span>
+        <span style="padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:#10B981;">✅ Ch 2: Polynomials</span>
+        <span style="padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:#10B981;">✅ Ch 3: Linear Equations</span>
+        <span style="padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:#10B981;">✅ Ch 4: Quadratic Equations</span>
+        <span style="padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);color:#3B82F6;">🔜 Ch 5–14 Coming Soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LIVE BANNER ── -->
+<section style="padding:52px 0;background:linear-gradient(135deg,rgba(16,185,129,0.06),rgba(59,130,246,0.06));border-top:1px solid rgba(16,185,129,0.15);border-bottom:1px solid rgba(59,130,246,0.15);">
+  <div class="container">
+    <div style="text-align:center;" class="fade-up">
+      <div class="section-label" style="color:#10B981;">🟢 Platform Status: Live</div>
+      <h2 class="section-title">Chapters 1–4 Are <span style="background:linear-gradient(135deg,#10B981,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Now Available</span></h2>
+      <p style="font-size:16px;color:#CBD5E1;max-width:580px;margin:0 auto 32px;">Real Numbers · Polynomials · Linear Equations · Quadratic Equations — with complete notes, PYQs, formula sheets, and flashcards. Remaining 10 chapters dropping soon.</p>
+      <form class="notify-form" id="notifyForm" novalidate>
+        <input type="email" class="notify-input" id="notify-email" placeholder="Enter your email — get notified when new chapters drop" required autocomplete="email">
+        <button type="submit" class="btn btn-primary">Join Waitlist →</button>
+      </form>
+      <div id="notify-status" style="margin-top:12px;font-size:13px;color:#10B981;min-height:20px;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST STATS ── -->
+<section id="stats" aria-label="Platform statistics">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card fade-up">
+        <div class="stat-icon" aria-hidden="true">📚</div>
+        <div class="stat-num"><span class="count-num" data-target="100">0</span>+</div>
+        <div class="stat-label">Important Questions</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-icon" aria-hidden="true">📝</div>
+        <div class="stat-num"><span class="count-num" data-target="100">0</span>+</div>
+        <div class="stat-label">Previous Year Questions</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-icon" aria-hidden="true">📖</div>
+        <div class="stat-num"><span class="count-num" data-target="14">0</span></div>
+        <div class="stat-label">Chapters Covered</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-icon" aria-hidden="true">🤖</div>
+        <div class="stat-num"><span class="count-num" data-target="9">0</span></div>
+        <div class="stat-label">AI Study Tools</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-icon" aria-hidden="true">⚡</div>
+        <div class="stat-num"><span class="count-num" data-target="14">0</span></div>
+        <div class="stat-label">Formula Sheets</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-icon" aria-hidden="true">🃏</div>
+        <div class="stat-num"><span class="count-num" data-target="500">0</span>+</div>
+        <div class="stat-label">Flashcards</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEM / SOLUTION ── -->
+<section id="problem" aria-label="Problem and solution">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <div class="section-label">The Problem</div>
+      <h2 class="section-title">Students Spend Too Much<br><span class="gradient-text">Time Searching.</span></h2>
+      <p class="section-sub" style="margin:0 auto 16px;">Every resource exists somewhere different. Students waste hours switching between apps and websites — time that should be spent learning.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card bad fade-up">
+        <div class="problem-card-title">❌ Traditional Method</div>
+        <div class="problem-item"><span>❌</span> Scattered notes across notebooks</div>
+        <div class="problem-item"><span>❌</span> Different websites for each topic</div>
+        <div class="problem-item"><span>❌</span> Random PDFs from Telegram</div>
+        <div class="problem-item"><span>❌</span> Hours lost searching YouTube</div>
+        <div class="problem-item"><span>❌</span> No mistake analysis or tracking</div>
+        <div class="problem-item"><span>❌</span> No progress visibility</div>
+        <div class="problem-arrow bad">↓</div>
+        <div class="problem-result bad">😰 Stress and Confusion</div>
+      </div>
+      <div class="problem-card good fade-up">
+        <div class="problem-card-title">✅ Zyvora Nexus</div>
+        <div class="problem-item"><span>✅</span> One platform — everything organized</div>
+        <div class="problem-item"><span>✅</span> AI-powered structured learning</div>
+        <div class="problem-item"><span>✅</span> Chapter-wise resources, instantly</div>
+        <div class="problem-item"><span>✅</span> Smart revision system built-in</div>
+        <div class="problem-item"><span>✅</span> Mistake Tracker + Redemption Test</div>
+        <div class="problem-item"><span>✅</span> Real-time progress analytics</div>
+        <div class="problem-arrow good">↓</div>
+        <div class="problem-result good">🏆 Confident Preparation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RESOURCES ── -->
+<section id="resources" aria-label="Learning resources">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <div class="section-label">Resources</div>
+      <h2 class="section-title">The Complete Mathematics<br><span class="gradient-text">Preparation System</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Everything you need for CBSE Class 10 Maths board exam preparation — organized, updated, and exam-focused.</p>
+    </div>
+    <div class="resources-grid">
+      <div class="resource-card fade-up">
+        <div class="resource-icon">📖</div>
+        <h3 class="resource-title">Chapter Notes</h3>
+        <p class="resource-desc">Comprehensive chapter-wise notes with clean formatting, diagrams, solved examples, and exam tips for all 14 chapters.</p>
+        <div class="resource-footer">
+          <span class="badge badge-free">Free</span>
+          <a href="#" class="resource-btn">Explore →</a>
+        </div>
+      </div>
+      <div class="resource-card fade-up">
+        <div class="resource-icon">⚡</div>
+        <h3 class="resource-title">Quick Revision Notes</h3>
+        <p class="resource-desc">One-page summaries for each chapter — revise an entire topic in minutes before your exam.</p>
+        <div class="resource-footer">
+          <span class="badge badge-free">Free</span>
+          <a href="#" class="resource-btn">Explore →</a>
+        </div>
+      </div>
+      <div class="resource-card fade-up">
+        <div class="resource-icon">🔢</div>
+        <h3 class="resource-title">Formula Vault</h3>
+        <p class="resource-desc">Every important formula organized chapter-wise with visual cards, memory tips, and explanations.</p>
+        <div class="resource-footer">
+          <span class="badge badge-free">Free</span>
+          <a href="#" class="resource-btn">Explore →</a>
+        </div>
+      </div>
+      <div class="resource-card fade-up">
+        <div class="resource-icon">📝</div>
+        <h3 class="resource-title">PYQ Hub</h3>
+        <p class="resource-desc">Previous Year Questions categorized by chapter, year, difficulty, with marking schemes and solutions.</p>
+        <div class="resource-footer">
+          <span class="badge badge-new">Starter+</span>
+          <a href="#" class="resource-btn">Explore →</a>
+        </div>
+      </div>
+      <div class="resource-card fade-up">
+        <div class="resource-icon">🎯</div>
+        <h3 class="resource-title">Important Questions</h3>
+        <p class="resource-desc">Board-focused high-probability questions with hints, full solutions, and related formulas.</p>
+        <div class="resource-footer">
+          <span class="badge badge-new">Starter+</span>
+          <a href="#" class="resource-btn">Explore →</a>
+        </div>
+      </div>
+      <div class="resource-card premium-card fade-up">
+        <div class="resource-icon">🏆</div>
+        <h3 class="resource-title">Top 100 Questions</h3>
+        <p class="resource-desc">Expert-curated collection of the most important board questions with complete worked solutions.</p>
+        <div class="resource-footer">
+          <span class="badge badge-premium">⭐ Pro Only</span>
+          <a href="#pricing" class="resource-btn">Upgrade →</a>
+        </div>
+      </div>
+      <div class="resource-card fade-up">
+        <div class="resource-icon">🃏</div>
+        <h3 class="resource-title">Flashcards</h3>
+        <p class="resource-desc">Interactive flip-card system for formulas, theorems, and concepts with shuffle mode and progress tracking.</p>
+        <div class="resource-footer">
+          <span class="badge badge-new">Starter+</span>
+          <a href="#" class="resource-btn">Explore →</a>
+        </div>
+      </div>
+      <div class="resource-card fade-up">
+        <div class="resource-icon">📄</div>
+        <h3 class="resource-title">Sample Papers</h3>
+        <p class="resource-desc">Full-length board-level exam simulation papers with time limits, marking schemes, and detailed solutions.</p>
+        <div class="resource-footer">
+          <span class="badge badge-new">Starter+</span>
+          <a href="#" class="resource-btn">Explore →</a>
+        </div>
+      </div>
+      <div class="resource-card premium-card fade-up">
+        <div class="resource-icon">🚀</div>
+        <h3 class="resource-title">Revision Packs</h3>
+        <p class="resource-desc">30-day, 15-day, 7-day, and 3-day crash revision plans with notes, PYQs, formulas, and schedules bundled.</p>
+        <div class="resource-footer">
+          <span class="badge badge-premium">⭐ Pro Only</span>
+          <a href="#pricing" class="resource-btn">Upgrade →</a>
+        </div>
+      </div>
+      <div class="resource-card premium-card fade-up">
+        <div class="resource-icon">🎥</div>
+        <h3 class="resource-title">Premium Video Solutions</h3>
+        <p class="resource-desc">High-quality chapter-wise video explanations with step-by-step solutions, timestamps, and downloadable notes.</p>
+        <div class="resource-footer">
+          <span class="badge badge-premium">⭐ Pro Only</span>
+          <a href="#pricing" class="resource-btn">Upgrade →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section id="how" aria-label="How Zyvora Nexus works">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <div class="section-label">Process</div>
+      <h2 class="section-title">Your Complete<br><span class="gradient-text">Preparation Journey</span></h2>
+    </div>
+    <div class="steps-wrapper">
+      <!-- Row 1 (steps 1-4) with connector -->
+      <div style="position:relative;">
+        <div class="steps-connector" aria-hidden="true"></div>
+        <div class="steps-grid">
+          <div class="step-card fade-up">
+            <div class="step-num" aria-hidden="true">1</div>
+            <div class="step-icon">📌</div>
+            <div class="step-title">Choose Chapter</div>
+            <div class="step-desc">Select any of the 14 CBSE Class 10 Math chapters</div>
+          </div>
+          <div class="step-card fade-up">
+            <div class="step-num" aria-hidden="true">2</div>
+            <div class="step-icon">📖</div>
+            <div class="step-title">Study Notes</div>
+            <div class="step-desc">Read structured, visually organized chapter notes</div>
+          </div>
+          <div class="step-card fade-up">
+            <div class="step-num" aria-hidden="true">3</div>
+            <div class="step-icon">✏️</div>
+            <div class="step-title">Practice Questions</div>
+            <div class="step-desc">Solve important questions and previous year papers</div>
+          </div>
+          <div class="step-card fade-up">
+            <div class="step-num" aria-hidden="true">4</div>
+            <div class="step-icon">🃏</div>
+            <div class="step-title">Revise Smartly</div>
+            <div class="step-desc">Use flashcards and formula vault for quick revision</div>
+          </div>
+        </div>
+      </div>
+      <!-- Row 2 (steps 5-8) -->
+      <div style="position:relative;margin-top:16px;">
+        <div class="steps-connector" aria-hidden="true"></div>
+        <div class="steps-grid">
+          <div class="step-card fade-up">
+            <div class="step-num" aria-hidden="true">5</div>
+            <div class="step-icon">🤖</div>
+            <div class="step-title">Use AI Tools</div>
+            <div class="step-desc">Get personalized plans, solve doubts with Master Ji AI</div>
+          </div>
+          <div class="step-card fade-up">
+            <div class="step-num" aria-hidden="true">6</div>
+            <div class="step-icon">🎯</div>
+            <div class="step-title">Track Mistakes</div>
+            <div class="step-desc">Analyze errors and take your Redemption Test</div>
+          </div>
+          <div class="step-card fade-up">
+            <div class="step-num" aria-hidden="true">7</div>
+            <div class="step-icon">📊</div>
+            <div class="step-title">Monitor Progress</div>
+            <div class="step-desc">Track streaks, analytics, and chapter completion</div>
+          </div>
+          <div class="step-card fade-up">
+            <div class="step-num" aria-hidden="true">8</div>
+            <div class="step-icon">🏆</div>
+            <div class="step-title">Score Top!</div>
+            <div class="step-desc">Walk into your board exam with complete confidence</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AI TOOLS ── -->
+<section id="ai" aria-label="AI study tools">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <div class="section-label">AI Ecosystem</div>
+      <h2 class="section-title">Your Personal<br><span class="gradient-text">AI Study Companion</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Master Ji AI guides, analyzes, and supports you throughout your entire preparation journey — not just another chatbot.</p>
+    </div>
+    <div class="ai-grid">
+      <div class="ai-card fade-up">
+        <div class="ai-card-icon">📅</div>
+        <h3 class="ai-card-title">AI Study Planner</h3>
+        <p class="ai-card-desc">Input your target marks, weak chapters, and days remaining. Get a day-by-day personalized study schedule with mock test dates.</p>
+        <div class="ai-card-footer">
+          <span class="badge badge-new">Starter+</span>
+          <span class="ai-launch">Launch →</span>
+        </div>
+      </div>
+      <div class="ai-card fade-up">
+        <div class="ai-card-icon">🤔</div>
+        <h3 class="ai-card-title">AI Doubt Solver</h3>
+        <p class="ai-card-desc">Ask any CBSE Maths question. Master Ji explains step-by-step, references formulas, and never just gives the answer — always teaches.</p>
+        <div class="ai-card-footer">
+          <span class="badge badge-free">Free (Limited)</span>
+          <span class="ai-launch">Launch →</span>
+        </div>
+      </div>
+      <div class="ai-card fade-up">
+        <div class="ai-card-icon">⚡</div>
+        <h3 class="ai-card-title">AI Revision Generator</h3>
+        <p class="ai-card-desc">Select chapters. Get instant key concepts, formulas, revision checklist, frequent board questions, and memory tricks.</p>
+        <div class="ai-card-footer">
+          <span class="badge badge-new">Starter+</span>
+          <span class="ai-launch">Launch →</span>
+        </div>
+      </div>
+      <div class="ai-card fade-up">
+        <div class="ai-card-icon">🔢</div>
+        <h3 class="ai-card-title">AI Formula Explainer</h3>
+        <p class="ai-card-desc">Select any formula. Get derivation, variable breakdown, when to use it, common mistakes, and a solved example.</p>
+        <div class="ai-card-footer">
+          <span class="badge badge-new">Starter+</span>
+          <span class="ai-launch">Launch →</span>
+        </div>
+      </div>
+      <div class="ai-card fade-up">
+        <div class="ai-card-icon">✏️</div>
+        <h3 class="ai-card-title">AI Practice Generator</h3>
+        <p class="ai-card-desc">Choose chapter, difficulty, and marks type. Get a customized practice set with complete solutions generated on demand.</p>
+        <div class="ai-card-footer">
+          <span class="badge badge-premium">⭐ Pro</span>
+          <span class="ai-launch">Launch →</span>
+        </div>
+      </div>
+      <div class="ai-card fade-up">
+        <div class="ai-card-icon">📊</div>
+        <h3 class="ai-card-title">AI Performance Analyzer</h3>
+        <p class="ai-card-desc">Analyze your question accuracy, chapter completion, study consistency, and get a personalized strength/weakness report.</p>
+        <div class="ai-card-footer">
+          <span class="badge badge-premium">⭐ Pro</span>
+          <span class="ai-launch">Launch →</span>
+        </div>
+      </div>
+      <div class="ai-card fade-up">
+        <div class="ai-card-icon">🗺️</div>
+        <h3 class="ai-card-title">AI Board Strategy</h3>
+        <p class="ai-card-desc">Get your remaining syllabus strategy, daily targets, chapter priority ranking, and a complete exam countdown plan.</p>
+        <div class="ai-card-footer">
+          <span class="badge badge-premium">⭐ Pro</span>
+          <span class="ai-launch">Launch →</span>
+        </div>
+      </div>
+      <div class="ai-card fade-up">
+        <div class="ai-card-icon">💪</div>
+        <h3 class="ai-card-title">AI Motivation Coach</h3>
+        <p class="ai-card-desc">Daily motivational messages, study reminders, streak celebrations, and encouragement from Master Ji — always in your corner.</p>
+        <div class="ai-card-footer">
+          <span class="badge badge-free">All Plans</span>
+          <span class="ai-launch">Launch →</span>
+        </div>
+      </div>
+      <div class="ai-card highlight-card fade-up">
+        <div class="ai-card-icon">🎯</div>
+        <h3 class="ai-card-title">Mistake Tracker + Redemption Test</h3>
+        <p class="ai-card-desc">Submit wrong answers → AI analyzes your mistake patterns → generates a personalized 10-question Redemption Test targeting your exact weak areas.</p>
+        <div class="ai-card-footer">
+          <span class="badge badge-premium">⭐ Pro Exclusive</span>
+          <span class="ai-launch" style="color:var(--accent-gold);">Launch →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MISTAKE TRACKER FEATURE ── -->
+<section id="mistake-tracker" aria-label="Mistake Tracker feature">
+  <div class="container">
+    <div class="tracker-inner fade-up">
+      <div class="tracker-grid">
+        <div>
+          <span class="badge badge-premium" style="margin-bottom:16px;">⭐ Premium Exclusive Feature</span>
+          <h2 class="section-title" style="margin-top:12px;">Know Your Mistakes.<br><span style="background:var(--gradient-gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Conquer Them.</span></h2>
+          <p class="section-sub" style="margin-bottom:32px;">Stop repeating the same mistakes in your board exam. Zyvora Nexus tracks every wrong answer, uses AI to diagnose the root cause, and builds a Redemption Test made specifically for you.</p>
+          <div class="tracker-steps">
+            <div class="tracker-step">
+              <div class="tracker-step-num">1</div>
+              <div>
+                <div class="tracker-step-title">Submit Your Mistakes</div>
+                <div class="tracker-step-desc">Enter the questions you got wrong, your answer, and the correct answer</div>
+              </div>
+            </div>
+            <div class="tracker-step">
+              <div class="tracker-step-num">2</div>
+              <div>
+                <div class="tracker-step-title">AI Diagnoses the Pattern</div>
+                <div class="tracker-step-desc">Master Ji identifies conceptual gaps, formula confusion, and recurring error types chapter-by-chapter</div>
+              </div>
+            </div>
+            <div class="tracker-step">
+              <div class="tracker-step-num">3</div>
+              <div>
+                <div class="tracker-step-title">Your Redemption Test is Ready</div>
+                <div class="tracker-step-desc">10 personalized questions targeting your exact weak areas — different questions, same concepts, with full solutions</div>
+              </div>
+            </div>
+          </div>
+          <a href="#pricing" class="btn btn-gold btn-lg" style="margin-top:32px;display:inline-flex;">Get Pro Access →</a>
+        </div>
+        <div class="tracker-visual">
+          <div class="tracker-visual-title">📊 Your Mistake Analysis</div>
+          <div class="mistake-item">
+            <span class="mistake-icon">❌</span>
+            <div>
+              <div class="mistake-text">Forgot ± sign in quadratic formula — gave only one root</div>
+              <div class="mistake-chapter">Quadratic Equations · Conceptual Gap</div>
+            </div>
+          </div>
+          <div class="mistake-item">
+            <span class="mistake-icon">❌</span>
+            <div>
+              <div class="mistake-text">sin²θ + cos²θ = 0 (should be 1)</div>
+              <div class="mistake-chapter">Trigonometry · Formula Confusion</div>
+            </div>
+          </div>
+          <div class="mistake-item">
+            <span class="mistake-icon">❌</span>
+            <div>
+              <div class="mistake-text">Discriminant D calculated as b²+4ac instead of b²-4ac</div>
+              <div class="mistake-chapter">Quadratic Equations · Calculation Error</div>
+            </div>
+          </div>
+          <div class="redemption-badge">
+            🔁 Redemption Test Generated — 10 Questions · 25 Marks
+          </div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:12px;font-style:italic;">Unlock with Pro — ₹499/month → <a href="#pricing" style="color:#3B82F6;font-weight:700;">Upgrade Now</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section id="pricing" aria-label="Pricing plans">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Choose Your<br><span class="gradient-text">Preparation Level</span></h2>
+      <p class="section-sub" style="margin:0 auto 48px;">Start free. Upgrade when you're ready to unlock the full power of Zyvora Nexus.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- FREE -->
+      <div class="pricing-card fade-up">
+        <div class="pricing-plan">Free</div>
+        <div class="pricing-price">₹0 <span>/ forever</span></div>
+        <div class="pricing-desc">Ch 1 Notes &amp; Quick Revision are free forever. No card needed.</div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Ch 1 Notes (Free)</li>
+          <li><span class="check">✓</span> Ch 1 Quick Revision (Free)</li>
+          <li><span class="check">✓</span> Sample PYQs</li>
+          <li><span class="check">✓</span> Limited Flashcards</li>
+          <li><span class="check">✓</span> AI Doubt Solver (5/day)</li>
+          <li><span class="cross">✕</span> <span style="color:#64748B">All Chapters (2–14)</span></li>
+          <li><span class="cross">✕</span> <span style="color:#64748B">AI Study Planner</span></li>
+          <li><span class="cross">✕</span> <span style="color:#64748B">Mistake Tracker</span></li>
+        </ul>
+        <a href="#" class="btn btn-secondary pricing-cta">Get Started Free</a>
+      </div>
+      <!-- STARTER -->
+      <div class="pricing-card fade-up">
+        <div class="pricing-plan">Starter</div>
+        <div class="pricing-price">₹199 <span>/ month</span></div>
+        <div class="pricing-desc">Full access to all study resources and core AI tools for serious preparation.</div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> All 14 Chapter Notes</li>
+          <li><span class="check">✓</span> Full PYQ Hub</li>
+          <li><span class="check">✓</span> Formula Vault</li>
+          <li><span class="check">✓</span> All Flashcards</li>
+          <li><span class="check">✓</span> Important Questions</li>
+          <li><span class="check">✓</span> Sample Papers</li>
+          <li><span class="check">✓</span> AI Study Planner</li>
+          <li><span class="cross">✕</span> <span style="color:#64748B">Mistake Tracker (Pro only)</span></li>
+        </ul>
+        <a href="#" class="btn btn-outline pricing-cta">Choose Starter →</a>
+      </div>
+      <!-- PRO — MOST RECOMMENDED -->
+      <div class="pricing-card popular fade-up">
+        <div class="popular-badge">🏆 Most Recommended</div>
+        <div class="pricing-plan" style="color:#3B82F6;">Pro</div>
+        <div class="pricing-price" style="background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">₹499 <span style="-webkit-text-fill-color:#64748B;color:#64748B;">/ month</span></div>
+        <div class="pricing-desc">Every AI tool. Every resource. Zero limits. The complete Zyvora Nexus experience.</div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Everything in Starter</li>
+          <li><span class="check">✓</span> Top 100 Questions</li>
+          <li><span class="check">✓</span> Revision Packs (30/15/7 day)</li>
+          <li><span class="check">✓</span> Premium Video Solutions</li>
+          <li><span class="check">✓</span> All AI Tools — Unlimited</li>
+          <li><span class="check">✓</span> <strong>Mistake Tracker + Redemption Test</strong></li>
+          <li><span class="check">✓</span> AI Board Strategy</li>
+          <li><span class="check">✓</span> Unlimited Downloads</li>
+        </ul>
+        <a href="#" class="btn btn-primary pricing-cta glow-blue">Get Pro — ₹499/mo →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOUNDER ── -->
+<section id="founder" aria-label="About the founder">
+  <div class="container">
+    <div class="founder-inner fade-up">
+      <div>
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title" style="font-size:clamp(22px,3vw,32px);margin-bottom:20px;">Every student knows the feeling.</h2>
+        <p class="founder-story">You open your laptop determined to study — but instead of solving problems, you spend the next hour searching. Notes are on one website. PYQs are somewhere else. Formula sheets are buried inside PDFs. Flashcards are on another app. By the time you've gathered everything, you've already lost the most valuable part of your study session — <em>your time.</em></p>
+        <p class="founder-story">While preparing for my own CBSE Class 10 Mathematics board examination, I realised this wasn't just my experience — it was the reality for almost every student around me. That raised a simple question: <strong style="color:#F1F5F9;">Why is finding study resources harder than studying itself?</strong></p>
+        <p class="founder-story">I couldn't find a platform that brought everything together. So instead of waiting for one to exist, I decided to build it. That's how <strong style="color:#F1F5F9;">Zyvora Nexus</strong> was born — not as another notes website, not as another coaching platform, not as another collection of PDFs — but as a complete learning ecosystem where everything is organised, accessible, and built around the way students actually learn.</p>
+        <p class="founder-story">I'm <strong style="color:#F1F5F9;">Yashasvi Bhardwaj</strong>, founder of Zyvora Nexus. I started building this at the age of 16 with a simple belief: technology should remove obstacles from learning, not create them. Every feature we build, every resource we organise, and every AI tool we create is guided by one purpose — giving students back the time they deserve to spend learning.</p>
+        <p class="founder-story" style="color:#F1F5F9;font-weight:600;font-style:italic;">Because the future of learning isn't about having more resources. It's about having the right resources, in the right place, at the right time.</p>
+        <div style="margin-top:28px;">
+          <div class="founder-name">Yashasvi Bhardwaj</div>
+          <div class="founder-title">Founder, Zyvora Nexus</div>
+        </div>
+      </div>
+      <div class="founder-visual">
+        <div class="founder-photo-placeholder">
+          <div class="founder-photo-icon">👤</div>
+          <div class="founder-photo-label">Yashasvi Bhardwaj</div>
+          <div class="founder-photo-sub">Founder, Zyvora Nexus · Age 16</div>
+        </div>
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;font-style:italic;margin-top:16px;">"Mehnat itni khamoshi se karo ki safalta shor macha de."</div>
+        <div class="founder-stat-grid">
+          <div class="founder-stat-item">
+            <div class="founder-stat-val">2026</div>
+            <div class="founder-stat-lbl">Founded</div>
+          </div>
+          <div class="founder-stat-item">
+            <div class="founder-stat-val">Class 10</div>
+            <div class="founder-stat-lbl">Built For</div>
+          </div>
+          <div class="founder-stat-item">
+            <div class="founder-stat-val">9</div>
+            <div class="founder-stat-lbl">AI Tools</div>
+          </div>
+          <div class="founder-stat-item">
+            <div class="founder-stat-val">14</div>
+            <div class="founder-stat-lbl">Chapters</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section id="testimonials" aria-label="Student testimonials">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">What Students<br><span class="gradient-text">Are Saying</span></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"I used to spend 2 hours just finding study material. With Zyvora Nexus, everything is right there. The AI Doubt Solver is genuinely brilliant — it teaches like a real teacher, not just gives answers."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">P</div>
+          <div>
+            <div class="testimonial-name">Priya Sharma</div>
+            <div class="testimonial-meta">CBSE Class 10, Delhi · Scored 94%</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"The Mistake Tracker is the best feature I've ever used. It showed me I was consistently forgetting the ± in the quadratic formula. The Redemption Test fixed that permanently. Literally life-changing."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div>
+            <div class="testimonial-name">Arjun Mehta</div>
+            <div class="testimonial-meta">CBSE Class 10, Mumbai · Pro User</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"The AI Study Planner gave me a complete 45-day plan based on my weak chapters. I just follow it every day. No stress, no confusion. My parents are impressed by how organized my preparation is now."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">R</div>
+          <div>
+            <div class="testimonial-name">Riya Gupta</div>
+            <div class="testimonial-meta">CBSE Class 10, Bangalore · Pro User</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"Formula Vault + Flashcards is the perfect combination. I revised the entire trigonometry chapter in 30 minutes before my test. The platform feels like it was built by someone who actually understands students."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">K</div>
+          <div>
+            <div class="testimonial-name">Kabir Singh</div>
+            <div class="testimonial-meta">CBSE Class 10, Pune · Starter User</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section id="faq" aria-label="Frequently asked questions">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Frequently Asked<br><span class="gradient-text">Questions</span></h2>
+    </div>
+    <div class="faq-list" role="list">
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">Is Zyvora Nexus aligned with the CBSE syllabus? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-answer">Yes, absolutely. Every resource on Zyvora Nexus — notes, PYQs, important questions, flashcards, and formula sheets — is 100% aligned with the official CBSE Class 10 Mathematics syllabus. Content is regularly reviewed and updated to reflect any syllabus changes.</div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">How does the AI Doubt Solver work? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-answer">The AI Doubt Solver is powered by Master Ji, an AI persona built on GPT-4o. When you submit a math question, Master Ji provides a step-by-step solution, explains the reasoning at Class 10 level, references the relevant formulas, points out common mistakes, and suggests a similar practice question — never just giving the final answer.</div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">What is the Mistake Tracker and Redemption Test? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-answer">The Mistake Tracker is a Pro-exclusive AI feature. You submit the questions you got wrong along with your answers and the correct answers. The AI analyzes the pattern — identifying whether mistakes are conceptual gaps, formula confusion, or calculation errors — and then generates a personalized 10-question Redemption Test that targets your exact weak areas, with complete solutions included.</div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">Which plan should I choose? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-answer">Start with Free to explore the platform. Choose Starter (₹199) if you want complete access to all study resources. Choose Pro (₹499) if you want the full AI toolkit including the Mistake Tracker, Redemption Test, AI Practice Generator, Video Solutions, Revision Packs, and Top 100 Questions. Most serious board exam students choose Pro — it pays for itself in the time you save.</div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">Can I download resources for offline use? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-answer">Starter users can download a limited number of resources per month. Pro users get unlimited downloads of all resources including notes, formula sheets, sample papers, revision packs, and AI-generated content. All downloads are organized in your personal Download Manager.</div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">Can I access Zyvora Nexus on mobile? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-answer">Yes. Zyvora Nexus is fully responsive and optimized for mobile browsers. All features, AI tools, resources, and your dashboard work seamlessly on phones and tablets. A dedicated mobile app for Android and iOS is on the product roadmap.</div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">How often is the content updated? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-answer">Content is reviewed and updated regularly to ensure accuracy and CBSE alignment. PYQs are added after each board examination cycle. All resources display a "Last Updated" date so you always know the content is current.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact" aria-label="Contact us">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info fade-up">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title" style="font-size:clamp(24px,3vw,38px);">Get in Touch</h2>
+        <p>Have a question, feedback, or want to know more about Zyvora Nexus? We're here to help. Fill in the form and we'll get back to you within 24 hours.</p>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">📧</span>
+          <span>support@zyvoranexus.com</span>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">⏱️</span>
+          <span>Response time: within 24 hours</span>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">🌟</span>
+          <span>Built with ❤️ by Yashasvi Bhardwaj</span>
+        </div>
+        <div style="margin-top:32px;padding:24px;background:rgba(59,130,246,0.06);border:1px solid var(--border);border-radius:var(--radius);">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <img src="https://i.ibb.co/cSDLgfCN/Chat-GPT-Image-Jun-29-2026-10-41-08-PM.png" alt="Master Ji" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(245,158,11,0.4);">
+            <div style="font-size:12px;color:var(--accent-gold);font-weight:700;text-transform:uppercase;letter-spacing:1px;">Master Ji Says</div>
+          </div>
+          <div style="font-size:14px;color:var(--text-secondary);font-style:italic;">"Beta, agar koi bhi sawal hai — poochho. Zyvora Nexus ki poori team tumhare saath hai. Safalta milegi!"</div>
+        </div>
+      </div>
+      <div class="contact-form fade-up" role="form">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:24px;">Send us a Message</h3>
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="contact-name">Your Name</label>
+              <input class="form-input" type="text" id="contact-name" name="name" placeholder="Arjun Sharma" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact-email">Email Address</label>
+              <input class="form-input" type="email" id="contact-email" name="email" placeholder="you@email.com" required autocomplete="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-subject">Subject</label>
+            <input class="form-input" type="text" id="contact-subject" name="subject" placeholder="Question about Pro Plan" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-message">Message</label>
+            <textarea class="form-textarea" id="contact-message" name="message" placeholder="Tell us how we can help you..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg form-submit">Send Message →</button>
+          <div id="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#hero" class="footer-logo" aria-label="Zyvora Nexus home">
+          <img src="https://i.ibb.co/d4jVN81z/Screenshot-2026-06-17-150932.png" alt="Zyvora Nexus Logo" class="footer-logo-img">
+          <div class="logo-text-wrap">
+            <span class="logo-name">ZYVORA NEXUS</span>
+            <span class="logo-sub-text">From Confusion to Confidence</span>
+          </div>
+        </a>
+        <p class="footer-brand-desc">From Confusion to Confidence. The AI-Powered Board Exam Command Center for CBSE Class 10 Mathematics students.</p>
+        <div style="font-size:12px;color:var(--text-muted);font-style:italic;margin-bottom:16px;">"Padho Smart, Samjho Deep, Score Top!"</div>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram" title="Instagram">📷</a>
+          <a href="#" class="social-link" aria-label="YouTube" title="YouTube">▶</a>
+          <a href="#" class="social-link" aria-label="Twitter/X" title="X">✕</a>
+          <a href="#" class="social-link" aria-label="Telegram" title="Telegram">✈</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="#resources">Chapter Notes</a></li>
+          <li><a href="#resources">Formula Vault</a></li>
+          <li><a href="#resources">PYQ Hub</a></li>
+          <li><a href="#resources">Flashcards</a></li>
+          <li><a href="#resources">Sample Papers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">AI Tools</div>
+        <ul class="footer-links">
+          <li><a href="#ai">AI Doubt Solver</a></li>
+          <li><a href="#ai">AI Study Planner</a></li>
+          <li><a href="#ai">Revision Generator</a></li>
+          <li><a href="#mistake-tracker">Mistake Tracker</a></li>
+          <li><a href="#ai">AI Board Strategy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#founder">About</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Zyvora Nexus. All rights reserved. Founded by Yashasvi Bhardwaj.</div>
+      <div class="footer-tagline">The AI-Powered Board Exam Command Center</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── MASTER JI FLOATING WIDGET ── -->
+<div class="masterji-float" id="masterjiFloat">
+  <div class="masterji-float-bubble" id="masterjiFloatBubble">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <img src="https://i.ibb.co/cSDLgfCN/Chat-GPT-Image-Jun-29-2026-10-41-08-PM.png" alt="Master Ji" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(245,158,11,0.5);">
+      <strong style="color:var(--accent-gold);font-size:11px;text-transform:uppercase;letter-spacing:1px;">Master Ji</strong>
+    </div>
+    "Agli galti nahi hogi! Start your session 🎯"
+  </div>
+  <button class="masterji-float-btn" id="masterjiFloatBtn" aria-label="Talk to Master Ji" title="Talk to Master Ji">
+    <img src="https://i.ibb.co/cSDLgfCN/Chat-GPT-Image-Jun-29-2026-10-41-08-PM.png" alt="Master Ji">
+  </button>
+</div>
+
+<script>
+// ── NAVBAR SCROLL ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 40) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+}, { passive: true });
+
+// ── HAMBURGER MENU ──
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+document.querySelectorAll('.mobile-link, .mobile-menu-actions a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  });
+});
+
+// ── INTERSECTION OBSERVER (fade-up) ──
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+// ── COUNTER ANIMATION ──
+function animateCounter(el, target, duration = 1500) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) { el.textContent = target; clearInterval(timer); }
+    else el.textContent = Math.floor(start);
+  }, 16);
+}
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      animateCounter(el, parseInt(el.dataset.target));
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.count-num').forEach(el => counterObserver.observe(el));
+
+// ── FAQ ACCORDION ──
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+// ── CONTACT FORM ──
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('form-status');
+contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = contactForm.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  formStatus.textContent = '';
+  formStatus.className = '';
+  const data = {
+    name: document.getElementById('contact-name').value.trim(),
+    email: document.getElementById('contact-email').value.trim(),
+    subject: document.getElementById('contact-subject').value.trim(),
+    message: document.getElementById('contact-message').value.trim(),
+  };
+  try {
+    const res = await fetch('https://yashasvi-2018.app.n8n.cloud/webhook/zyvora-contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const result = await res.json();
+    if (res.ok && result.success) {
+      formStatus.textContent = '✓ Thank you! We will get back to you within 24 hours.';
+      formStatus.className = 'success';
+      contactForm.reset();
+    } else {
+      throw new Error(result.error || 'Something went wrong');
+    }
+  } catch (err) {
+    formStatus.textContent = '✗ ' + (err.message || 'Could not send message. Please try again.');
+    formStatus.className = 'error';
+  } finally {
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }
+});
+
+// ── NOTIFY FORM ──
+const notifyForm = document.getElementById('notifyForm');
+const notifyStatus = document.getElementById('notify-status');
+notifyForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = document.getElementById('notify-email').value.trim();
+  if (!email) return;
+  notifyStatus.textContent = '✓ You\'re on the early access list! We\'ll notify you at launch.';
+  notifyForm.reset();
+});
+
+// No countdown needed — platform is live!
+
+// ── MASTER JI FLOAT BUTTON ──
+const floatBtn = document.getElementById('masterjiFloatBtn');
+const floatBubble = document.getElementById('masterjiFloatBubble');
+let bubbleTimeout;
+
+const quotes = [
+  '"Agli galti nahi hogi! Let\'s study smart 🎯"',
+  '"Formula yaad karo — board exam mein kaam aayega! 📚"',
+  '"Tu kar sakta hai! Practice karo aur aage badho! 💪"',
+  '"Ek step at a time. Confidence rakhho! ⭐"',
+  '"Maths mushkil nahi, sirf practice chahiye! 🔢"',
+];
+let quoteIdx = 0;
+
+floatBtn.addEventListener('click', () => {
+  const isVisible = floatBubble.classList.contains('show');
+  floatBubble.innerHTML = '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><img src="https://i.ibb.co/cSDLgfCN/Chat-GPT-Image-Jun-29-2026-10-41-08-PM.png" alt="Master Ji" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(245,158,11,0.5);"><strong style="color:var(--accent-gold);font-size:11px;text-transform:uppercase;letter-spacing:1px;">Master Ji</strong></div>' + quotes[quoteIdx % quotes.length];
+  quoteIdx++;
+  if (isVisible) {
+    floatBubble.classList.remove('show');
+    clearTimeout(bubbleTimeout);
+  } else {
+    floatBubble.classList.add('show');
+    clearTimeout(bubbleTimeout);
+    bubbleTimeout = setTimeout(() => floatBubble.classList.remove('show'), 5000);
+  }
+});
+
+// Show bubble on page load after 3s
+setTimeout(() => {
+  floatBubble.classList.add('show');
+  bubbleTimeout = setTimeout(() => floatBubble.classList.remove('show'), 6000);
+}, 3000);
+
+// ── SMOOTH SCROLL ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
